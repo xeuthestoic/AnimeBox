@@ -6,6 +6,7 @@ const homePage = document.getElementById("homePage");
 const libraryPage = document.getElementById("libraryPage");
 const allLibrary = document.getElementById("allLibrary");
 
+modal.hidden = true;
 addBtn.onclick = () => modal.hidden = false;
 modal.onclick = e => { if(e.target === modal) modal.hidden = true; }
 
