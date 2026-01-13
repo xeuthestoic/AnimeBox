@@ -5,6 +5,7 @@ const library = document.getElementById("library");
 const homePage = document.getElementById("homePage");
 const libraryPage = document.getElementById("libraryPage");
 const allLibrary = document.getElementById("allLibrary");
+const recentRow = document.getElementById("recentRow");
 
 modal.hidden = true;
 addBtn.onclick = () => modal.hidden = false;
@@ -33,9 +34,24 @@ form.onsubmit = async e => {
 
 function loadAnimes(){
   getAll(list => {
+
     library.innerHTML = "";
     allLibrary.innerHTML = "";
-    list.forEach(renderAnime);
+    recentRow.innerHTML = "";
+
+    list.sort((a,b) => b.createdAt - a.createdAt);
+
+    list.forEach((anime, i) => {
+      renderAnime(anime);
+
+      if(i < 10){ // 10 derniers animés
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = anime.image ? `<img src="${anime.image}">` : "";
+        recentRow.appendChild(card);
+      }
+    });
+
   });
 }
 
