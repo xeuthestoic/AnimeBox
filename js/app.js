@@ -2,6 +2,9 @@ const modal = document.getElementById("modal");
 const addBtn = document.getElementById("addBtn");
 const form = document.getElementById("animeForm");
 const library = document.getElementById("library");
+const homePage = document.getElementById("homePage");
+const libraryPage = document.getElementById("libraryPage");
+const allLibrary = document.getElementById("allLibrary");
 
 addBtn.onclick = () => modal.hidden = false;
 modal.onclick = e => { if(e.target === modal) modal.hidden = true; }
@@ -57,3 +60,24 @@ function label(s){
     dropped:"Abandonnés"
   }[s];
 }
+
+document.querySelectorAll("#bottomBar .tab").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll("#bottomBar .tab").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    if(btn.dataset.page === "home"){
+      homePage.classList.add("active");
+      libraryPage.classList.remove("active");
+    }
+
+    if(btn.dataset.page === "library"){
+      homePage.classList.remove("active");
+      libraryPage.classList.add("active");
+    }
+  };
+});
+
+document.getElementById("addBtnBottom").onclick = () => {
+  modal.hidden = false;
+};
