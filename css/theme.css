@@ -1,1 +1,15 @@
+:root {
+  --bg: #050b1e;
+  --panel: #0a1638;
+  --blue: #1e90ff;
+  --text: #eaf0ff;
+}
 
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #0a1b3d, #050b1e 60%);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
