@@ -13,6 +13,11 @@
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/layout.css">
 </head>
+<nav id="bottomBar">
+  <button class="tab active" data-page="home">🏠</button>
+  <button class="tab add" id="addBtnBottom">＋</button>
+  <button class="tab" data-page="library">📚</button>
+</nav>
 
 <body>
 
@@ -21,9 +26,18 @@
   <input id="search" placeholder="Rechercher un anime...">
 </header>
 
-<main id="library"></main>
+<main id="pages">
 
-<button id="addBtn">＋</button>
+  <section id="homePage" class="page active">
+    <div id="library"></div>
+  </section>
+
+  <section id="libraryPage" class="page">
+    <h2 style="padding:14px;">📚 Bibliothèque</h2>
+    <div id="allLibrary" class="grid"></div>
+  </section>
+
+</main>
 
 <div id="modal" hidden>
   <form id="animeForm">
