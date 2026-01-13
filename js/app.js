@@ -33,6 +33,7 @@ form.onsubmit = async e => {
 function loadAnimes(){
   getAll(list => {
     library.innerHTML = "";
+    allLibrary.innerHTML = "";
     list.forEach(renderAnime);
   });
 }
@@ -44,6 +45,10 @@ function renderAnime(anime){
     section.className = "section";
     section.innerHTML = `<h2>${label(anime.status)}</h2><div class="row" id="${anime.status}"></div>`;
     library.appendChild(section);
+    const mini = document.createElement("div");
+    mini.className = "card";
+    mini.innerHTML = anime.image ? `<img src="${anime.image}">` : "";
+    allLibrary.appendChild(mini);
   }
 
   const card = document.createElement("div");
