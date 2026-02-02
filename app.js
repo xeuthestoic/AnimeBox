@@ -105,3 +105,7 @@ document.getElementById("homeTab").onclick = showHome;
 document.getElementById("libraryTab").onclick = showLibrary;
 
 init();
+
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+}
