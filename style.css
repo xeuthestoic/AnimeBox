@@ -129,35 +129,47 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 999;
 }
 
-.hidden { display: none; }
+.hidden { 
+    display: none; 
+}
 
 .modal-content {
     position: relative;
     background: linear-gradient(180deg,#111827,#000);
-    padding: 30px;
+    padding: 60px 25px 25px 25px; /* plus d'espace en haut */
     width: 90%;
     max-width: 420px;
     border-radius: 18px;
     animation: pop 0.25s ease;
 }
 
+/* Animation */
 @keyframes pop {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
+/* CLOSE BUTTON */
 .close-btn {
     position: absolute;
-    top: 15px;
+    top: 20px;
     right: 20px;
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
     color: white;
+    z-index: 1000; /* important */
+    transition: 0.2s;
 }
+
+.close-btn:hover {
+    transform: scale(1.2);
+}
+
 
 input, select {
     width: 100%;
