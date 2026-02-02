@@ -1,4 +1,5 @@
-let rating = 0;
+const customAddButtonLink = null;
+
 let currentFilter = "Tous";
 let searchQuery = "";
 
@@ -15,7 +16,7 @@ function saveData(data){
 function showHome(){
     content.innerHTML = `
         <h2>Bienvenue sur AnimeBox</h2>
-        <p>Version 3.0</p>
+        <p>Version 4.0</p>
         <p>Créé par Hugo</p>
     `;
 }
@@ -28,7 +29,7 @@ function showLibrary(){
     }
 
     if(searchQuery){
-        data = data.filter(a => 
+        data = data.filter(a =>
             a.name.toLowerCase().includes(searchQuery.toLowerCase())
         );
     }
@@ -42,8 +43,7 @@ function showLibrary(){
         <div class="filters">
             ${["Tous","En cours","Terminé","Abandonné","En attente"]
             .map(f=>`
-                <button 
-                    class="${currentFilter===f?'active':''}"
+                <button class="${currentFilter===f?'active':''}"
                     onclick="setFilter('${f}')">
                     ${f}
                 </button>
@@ -51,7 +51,7 @@ function showLibrary(){
         </div>
 
         <div class="grid">
-            ${data.map((a,i)=>`
+            ${data.map(a=>`
                 <div class="card">
                     <img src="${a.cover}">
                 </div>
@@ -81,8 +81,7 @@ function saveAnime(){
             total: document.getElementById("total").value,
             current: document.getElementById("current").value,
             status: document.getElementById("status").value,
-            cover: reader.result,
-            rating: rating
+            cover: reader.result
         });
         saveData(data);
         closeModal();
@@ -105,8 +104,7 @@ function closeModal(){
 }
 
 function exportJSON(){
-    const data = getData();
-    const blob = new Blob([JSON.stringify(data)], {type:"application/json"});
+    const blob = new Blob([JSON.stringify(getData())], {type:"application/json"});
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = "animebox_backup.json";
@@ -114,20 +112,25 @@ function exportJSON(){
 }
 
 function importJSON(event){
-    const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = function(){
         saveData(JSON.parse(reader.result));
         showLibrary();
         closeSettings();
     };
-    reader.readAsText(file);
+    reader.readAsText(event.target.files[0]);
 }
-
-document.getElementById("addTab").onclick = () =>
-    document.getElementById("addModal").classList.remove("hidden");
 
 document.getElementById("homeTab").onclick = showHome;
 document.getElementById("libraryTab").onclick = showLibrary;
+document.getElementById("addTab").onclick = () =>
+    document.getElementById("addModal").classList.remove("hidden");
 
-showHome();
+window.addEventListener("DOMContentLoaded", () => {
+    if(customAddButtonLink){
+        const btn = document.querySelector(".add-btn");
+        btn.innerHTML = `<img src="${customAddButtonLink}" style="width:28px;height:28px;">`;
+        btn.style.background = "none";
+    }
+    showHome();
+});
