@@ -1,43 +1,73 @@
 let rating = 0;
+let currentFilter = "Tous";
+let searchQuery = "";
+
 const content = document.getElementById("content");
 
-function showPage(html){
-    content.classList.remove("fade");
-    void content.offsetWidth;
-    content.innerHTML = html;
-    content.classList.add("fade");
+function getData(){
+    return JSON.parse(localStorage.getItem("animebox")) || [];
+}
+
+function saveData(data){
+    localStorage.setItem("animebox", JSON.stringify(data));
 }
 
 function showHome(){
-    showPage(`
+    content.innerHTML = `
         <h2>Bienvenue sur AnimeBox</h2>
-        <p>Version 2.0</p>
+        <p>Version 3.0</p>
         <p>Créé par Hugo</p>
-        <p>Développé en HTML / CSS / JavaScript</p>
-    `);
+    `;
 }
 
 function showLibrary(){
-    const data = JSON.parse(localStorage.getItem("animebox")) || [];
+    let data = getData();
 
-    if(data.length === 0){
-        showPage("<p>Aucun anime ajouté.</p>");
-        return;
+    if(currentFilter !== "Tous"){
+        data = data.filter(a => a.status === currentFilter);
     }
 
-    showPage(`
-        <div class="grid">
-        ${data.map((a,i)=>`
-            <div class="card" onclick="deleteAnime(${i})">
-                <img src="${a.cover}">
-                <div class="card-info">
-                    <strong>${a.name}</strong><br>
-                    ${a.current}/${a.total} • ${"⭐".repeat(a.rating)}
-                </div>
-            </div>
-        `).join("")}
+    if(searchQuery){
+        data = data.filter(a => 
+            a.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    }
+
+    content.innerHTML = `
+        <div class="search-bar">
+            <input type="text" placeholder="Rechercher..."
+                oninput="searchAnime(this.value)">
         </div>
-    `);
+
+        <div class="filters">
+            ${["Tous","En cours","Terminé","Abandonné","En attente"]
+            .map(f=>`
+                <button 
+                    class="${currentFilter===f?'active':''}"
+                    onclick="setFilter('${f}')">
+                    ${f}
+                </button>
+            `).join("")}
+        </div>
+
+        <div class="grid">
+            ${data.map((a,i)=>`
+                <div class="card">
+                    <img src="${a.cover}">
+                </div>
+            `).join("")}
+        </div>
+    `;
+}
+
+function setFilter(f){
+    currentFilter = f;
+    showLibrary();
+}
+
+function searchAnime(q){
+    searchQuery = q;
+    showLibrary();
 }
 
 function saveAnime(){
@@ -45,7 +75,7 @@ function saveAnime(){
     const reader = new FileReader();
 
     reader.onload = function(){
-        const data = JSON.parse(localStorage.getItem("animebox")) || [];
+        const data = getData();
         data.push({
             name: document.getElementById("name").value,
             total: document.getElementById("total").value,
@@ -54,30 +84,48 @@ function saveAnime(){
             cover: reader.result,
             rating: rating
         });
-        localStorage.setItem("animebox", JSON.stringify(data));
+        saveData(data);
         closeModal();
         showLibrary();
-    }
+    };
 
     if(file) reader.readAsDataURL(file);
 }
 
-function deleteAnime(i){
-    if(confirm("Supprimer cet anime ?")){
-        const data = JSON.parse(localStorage.getItem("animebox"));
-        data.splice(i,1);
-        localStorage.setItem("animebox", JSON.stringify(data));
-        showLibrary();
-    }
+function openSettings(){
+    document.getElementById("settingsModal").classList.remove("hidden");
+}
+
+function closeSettings(){
+    document.getElementById("settingsModal").classList.add("hidden");
 }
 
 function closeModal(){
     document.getElementById("addModal").classList.add("hidden");
 }
 
-document.getElementById("addTab").onclick = ()=> {
+function exportJSON(){
+    const data = getData();
+    const blob = new Blob([JSON.stringify(data)], {type:"application/json"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "animebox_backup.json";
+    a.click();
+}
+
+function importJSON(event){
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function(){
+        saveData(JSON.parse(reader.result));
+        showLibrary();
+        closeSettings();
+    };
+    reader.readAsText(file);
+}
+
+document.getElementById("addTab").onclick = () =>
     document.getElementById("addModal").classList.remove("hidden");
-};
 
 document.getElementById("homeTab").onclick = showHome;
 document.getElementById("libraryTab").onclick = showLibrary;
