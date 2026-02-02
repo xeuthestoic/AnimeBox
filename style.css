@@ -169,3 +169,31 @@ input, select {
     font-weight: bold;
     cursor: pointer;
 }
+
+.icon-btn {
+    position: absolute;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: white;
+    transition: 0.2s;
+}
+
+.icon-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Close toujours en haut à droite */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+}
+
