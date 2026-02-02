@@ -7,9 +7,8 @@
 
 <link rel="stylesheet" href="style.css">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0f172a">
+<meta name="theme-color" content="#0b1120">
 
-<!-- iOS PWA -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="apple-touch-icon" href="assets/logo.png">
@@ -17,12 +16,12 @@
 
 <body>
 
-<header>
+<header class="topbar">
     <img src="assets/logo.png" class="logo">
     <h1>AnimeBox</h1>
 </header>
 
-<main id="content"></main>
+<main id="content" class="page fade"></main>
 
 <nav class="bottom-nav">
     <button id="homeTab">🏠</button>
@@ -30,37 +29,32 @@
     <button id="libraryTab">📚</button>
 </nav>
 
-<!-- Modal Add -->
+<!-- Modal -->
 <div id="addModal" class="modal hidden">
     <div class="modal-content">
-        <button class="close-btn" onclick="closeModal()">✖</button>
+        <div class="modal-header">
+            <h2>Ajouter un anime</h2>
+            <button onclick="closeModal()">✕</button>
+        </div>
 
-        <h2>Ajouter</h2>
+        <input type="text" id="name" placeholder="Titre">
 
-        <select id="type">
-            <option value="anime">Anime</option>
-            <option value="manga">Manga</option>
-        </select>
-
-        <input type="text" id="name" placeholder="Nom">
+        <input type="number" id="total" placeholder="Épisodes totaux">
 
         <input type="file" id="cover" accept="image/*">
 
-        <input type="number" id="total" placeholder="Total épisodes/chapitres">
-
-        <input type="number" id="current" placeholder="Avancée actuelle">
+        <input type="number" id="current" placeholder="Progression actuelle">
 
         <select id="status">
             <option>En cours</option>
             <option>Abandonné</option>
             <option>Terminé</option>
             <option>En attente</option>
-            <option>À lire / À regarder</option>
         </select>
 
         <div class="stars" id="stars"></div>
 
-        <button onclick="saveAnime()">Sauvegarder</button>
+        <button class="primary" onclick="saveAnime()">Ajouter</button>
     </div>
 </div>
 
