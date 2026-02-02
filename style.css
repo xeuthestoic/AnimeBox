@@ -1,7 +1,8 @@
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(180deg,#020617,#0f172a,#000000);
+    background: radial-gradient(circle at 20% 30%, #1e1b4b 0%, #0f172a 40%, #020617 70%, #000000 100%);
+    background-attachment: fixed;
     color: white;
 }
 
