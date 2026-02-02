@@ -2,70 +2,68 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AnimeBox</title>
 
+<link rel="stylesheet" href="style.css">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#050b1e">
+<meta name="theme-color" content="#0f172a">
+
+<!-- iOS PWA -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-<link rel="stylesheet" href="css/theme.css">
-<link rel="stylesheet" href="css/layout.css">
+<link rel="apple-touch-icon" href="assets/logo.png">
 </head>
-<nav id="bottomBar">
-  <button class="tab active" data-page="home">🏠</button>
-  <button class="tab add" id="addBtnBottom">＋</button>
-  <button class="tab" data-page="library">📚</button>
-</nav>
 
 <body>
 
 <header>
-  <h1>AnimeBox</h1>
-  <input id="search" placeholder="Rechercher un anime...">
+    <img src="assets/logo.png" class="logo">
+    <h1>AnimeBox</h1>
 </header>
 
-<main id="pages">
+<main id="content"></main>
 
-  <section id="homePage" class="page active">
-  <section class="section">
-    <h2>🆕 Récemment ajoutés</h2>
-    <div class="row" id="recentRow"></div>
-  </section>
-    <div id="library"></div>
-  </section>
+<nav class="bottom-nav">
+    <button id="homeTab">🏠</button>
+    <button id="addTab" class="add-btn">＋</button>
+    <button id="libraryTab">📚</button>
+</nav>
 
-  <section id="libraryPage" class="page">
-    <h2 style="padding:14px;">📚 Bibliothèque</h2>
-    <div id="allLibrary" class="grid"></div>
-  </section>
+<!-- Modal Add -->
+<div id="addModal" class="modal hidden">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal()">✖</button>
 
-</main>
+        <h2>Ajouter</h2>
 
-<div id="modal" hidden>
-  <form id="animeForm">
-    <h2>Ajouter un anime</h2>
-    <input id="title" required placeholder="Titre">
-    <input id="episodes" type="number" placeholder="Épisodes totaux">
-    <input id="image" type="file" accept="image/*">
-    <select id="status">
-      <option value="watching">En cours</option>
-      <option value="planned">À voir</option>
-      <option value="completed">Terminé</option>
-      <option value="dropped">Abandonné</option>
-    </select>
-    <button>Ajouter</button>
-  </form>
+        <select id="type">
+            <option value="anime">Anime</option>
+            <option value="manga">Manga</option>
+        </select>
+
+        <input type="text" id="name" placeholder="Nom">
+
+        <input type="file" id="cover" accept="image/*">
+
+        <input type="number" id="total" placeholder="Total épisodes/chapitres">
+
+        <input type="number" id="current" placeholder="Avancée actuelle">
+
+        <select id="status">
+            <option>En cours</option>
+            <option>Abandonné</option>
+            <option>Terminé</option>
+            <option>En attente</option>
+            <option>À lire / À regarder</option>
+        </select>
+
+        <div class="stars" id="stars"></div>
+
+        <button onclick="saveAnime()">Sauvegarder</button>
+    </div>
 </div>
 
-<script src="js/db.js"></script>
-<script src="js/image.js"></script>
-<script src="js/app.js"></script>
-<script>
-if("serviceWorker" in navigator){
-  navigator.serviceWorker.register("sw.js");
-}
-</script>
+<script src="app.js"></script>
 </body>
 </html>
