@@ -177,3 +177,10 @@ input, select {
     color: white;
     cursor: pointer;
 }
+
+.logo {
+    position: absolute;
+    left: 20px;
+    height: 40px;
+}
+
