@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" href="style.css">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0b1120">
+<meta name="theme-color" content="#020617">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -19,6 +19,7 @@
 <header class="topbar">
     <img src="assets/logo.png" class="logo">
     <h1>AnimeBox</h1>
+    <button class="settings-btn" onclick="openSettings()">⚙️</button>
 </header>
 
 <main id="content" class="page fade"></main>
@@ -29,32 +30,42 @@
     <button id="libraryTab">📚</button>
 </nav>
 
-<!-- Modal -->
+<!-- ADD MODAL -->
 <div id="addModal" class="modal hidden">
-    <div class="modal-content">
+    <div class="modal-content slide-up">
         <div class="modal-header">
-            <h2>Ajouter un anime</h2>
+            <h2>Ajouter</h2>
             <button onclick="closeModal()">✕</button>
         </div>
 
         <input type="text" id="name" placeholder="Titre">
-
-        <input type="number" id="total" placeholder="Épisodes totaux">
-
+        <input type="number" id="total" placeholder="Total épisodes">
+        <input type="number" id="current" placeholder="Progression">
         <input type="file" id="cover" accept="image/*">
-
-        <input type="number" id="current" placeholder="Progression actuelle">
 
         <select id="status">
             <option>En cours</option>
-            <option>Abandonné</option>
             <option>Terminé</option>
+            <option>Abandonné</option>
             <option>En attente</option>
         </select>
 
         <div class="stars" id="stars"></div>
 
         <button class="primary" onclick="saveAnime()">Ajouter</button>
+    </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div id="settingsModal" class="modal hidden">
+    <div class="modal-content slide-up">
+        <div class="modal-header">
+            <h2>Paramètres</h2>
+            <button onclick="closeSettings()">✕</button>
+        </div>
+
+        <button class="primary" onclick="exportJSON()">Exporter JSON</button>
+        <input type="file" id="importFile" accept=".json" onchange="importJSON(event)">
     </div>
 </div>
 
