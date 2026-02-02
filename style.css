@@ -1,18 +1,18 @@
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(180deg,#0b1120,#020617);
+    background: linear-gradient(180deg,#020617,#0f172a,#000000);
     color: white;
 }
 
-/* TOP BAR */
+/* HEADER */
 .topbar {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70px;
     position: relative;
-    backdrop-filter: blur(10px);
+    background: linear-gradient(90deg,#0f172a,#020617);
 }
 
 .logo {
@@ -21,31 +21,66 @@ body {
     height: 40px;
 }
 
-h1 {
-    font-weight: 600;
-    letter-spacing: 2px;
+.settings-btn {
+    position: absolute;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-/* PAGE */
 .page {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
     padding-bottom: 120px;
-    min-height: 70vh;
 }
 
-/* Animation */
-.fade {
-    animation: fade 0.25s ease;
+/* SEARCH */
+.search-bar {
+    position: relative;
+    margin-bottom: 20px;
 }
 
-@keyframes fade {
-    from {opacity:0; transform:translateY(10px);}
-    to {opacity:1; transform:translateY(0);}
+.search-bar input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(90deg,#0f172a,#1e293b);
+    color: white;
+    transition: 0.3s;
 }
 
-/* GRID LIBRARY */
+.search-bar input:focus {
+    transform: scale(1.03);
+    outline: none;
+}
+
+/* FILTERS */
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filters button {
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: none;
+    background: #1e293b;
+    color: white;
+    cursor: pointer;
+}
+
+.filters button.active {
+    background: #2563eb;
+}
+
+/* GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
@@ -53,11 +88,11 @@ h1 {
 }
 
 .card {
-    position: relative;
-    border-radius: 14px;
+    border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: 0.3s;
+    background: linear-gradient(180deg,#0f172a,#000);
 }
 
 .card:hover {
@@ -70,52 +105,26 @@ h1 {
     object-fit: cover;
 }
 
-.card-info {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: linear-gradient(transparent,rgba(0,0,0,0.9));
-    padding: 10px;
-    font-size: 14px;
-}
-
-/* NAVBAR */
+/* NAV */
 .bottom-nav {
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     width: 350px;
-    background: rgba(15,23,42,0.9);
+    background: linear-gradient(90deg,#0f172a,#020617);
     display: flex;
     justify-content: space-around;
     padding: 10px;
     border-radius: 50px;
-    backdrop-filter: blur(10px);
 }
 
-.bottom-nav button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-.add-btn {
-    background: #2563eb;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 28px;
-    color: white;
-}
-
-/* MODAL */
+/* MODALS */
 .modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.8);
+   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,17 +133,20 @@ h1 {
 .hidden { display: none; }
 
 .modal-content {
-    background: #0f172a;
+    background: linear-gradient(180deg,#0f172a,#000);
     padding: 25px;
     width: 90%;
     max-width: 400px;
     border-radius: 20px;
 }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.slide-up {
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {transform: translateY(40px); opacity:0;}
+    to {transform: translateY(0); opacity:1;}
 }
 
 input, select {
@@ -154,10 +166,5 @@ input, select {
     border-radius: 10px;
     color: white;
     font-weight: bold;
-    cursor: pointer;
-}
-
-.stars span {
-    font-size: 22px;
     cursor: pointer;
 }
