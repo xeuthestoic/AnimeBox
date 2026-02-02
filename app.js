@@ -16,8 +16,8 @@ function saveData(data){
 function showHome(){
     content.innerHTML = `
         <h2>Bienvenue sur AnimeBox</h2>
-        <p>Version 4.0</p>
-        <p>Créé par Hugo</p>
+        <p>Version Release : 1.0</p>
+        <p>Créé par xeuthestoic</p>
     `;
 }
 
