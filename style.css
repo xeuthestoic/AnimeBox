@@ -71,7 +71,7 @@ main {
 /* SEARCH BAR */
 .search-bar {
     position: relative;
-    margin: 20px auto;
+    margin: 10px auto;
     width: 80%;
     max-width: 800px;
 }
