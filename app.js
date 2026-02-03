@@ -92,9 +92,9 @@ function addDefaultAnime(index){
     if(!exists){
         data.push({...anime});
         saveData(data);
-        showToast("Ajouté à ta bibliothèque ✅");
+        showToast("✅ | Ajouté à ta bibliothèque");
     } else {
-        showToast("Déjà dans ta bibliothèque ⚠️");
+        showToast("⚠️ | Déjà dans ta bibliothèque");
     }
 }
 
@@ -145,8 +145,8 @@ function showLibrary(){
                         ${a.type === "anime" && a.season ? ` • ${a.season}` : ""}
                         <br>
                         ${a.type === "anime"
-                            ? `🎬 Épisode ${a.current} / ${a.total}`
-                            : `📖 Chapitre ${a.current} / ${a.total}`}
+                            ? `🎬 | Épisode ${a.current} / ${a.total}`
+                            : `📖 | Chapitre ${a.current} / ${a.total}`}
                     </div>
                 </div>
             `).join("")}
@@ -298,7 +298,7 @@ function importJSON(event){
 function resetData(){
     localStorage.removeItem("animebox");
     closeSettings();
-    showToast("Données réinitialisées 🗑");
+    showToast("🗑 | Données réinitialisées");
     showLibrary();
 }
 
