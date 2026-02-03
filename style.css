@@ -244,20 +244,25 @@ main {
 /* CLOSE BUTTON */
 .close-btn {
     position: absolute;
-    top: 18px;
-    right: 18px;
-    background: transparent;
+    top: 12px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(59,130,246,0.1);
+    border-radius: 50%;
     border: none;
-    font-size: 22px;
+    font-size: 16px;
     cursor: pointer;
-    color: #3b82f6;
-    z-index: 10000; /* 👈 au-dessus du contenu */
+    color: #60a5fa;
     transition: 0.2s ease;
 }
 
 .close-btn:hover {
-    transform: scale(1.2);
-    text-shadow: 0 0 10px rgba(59,130,246,0.8);
+    background: rgba(59,130,246,0.25);
+    transform: scale(1.1);
 }
 
 input, select {
