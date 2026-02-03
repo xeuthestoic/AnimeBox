@@ -63,7 +63,7 @@ function saveData(data){
 function showHome(){
     content.innerHTML = `
         <h2>Suggestions</h2>
-        <p>Clique pour ajouter à ta bibliothèque</p>
+        <p>Clique sur un anime pour l'ajouter à ta bibliothèque</p>
 
         <div class="grid">
             ${DEFAULT_ANIMES.map((a,i)=>`
