@@ -66,6 +66,11 @@
         <button class="close-btn" onclick="closeSettings()">❌</button>
         <h2>Paramètres</h2>
 
+        <!-- VERSION -->
+        <p class="settings-version">
+            Version : <span id="settingsVersion"></span>
+        </p>
+
         <button class="primary" onclick="exportJSON()">Exporter JSON</button>
         <input type="file" accept=".json" onchange="importJSON(event)">
 
