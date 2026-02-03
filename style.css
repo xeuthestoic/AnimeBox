@@ -224,3 +224,47 @@ input, select {
     left: 20px;
     height: 40px;
 }
+
+/* TOAST */
+.toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg,#1f2937,#000);
+    padding: 12px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideUpToast 0.3s ease;
+    z-index: 2000;
+}
+
+@keyframes slideUpToast {
+    from { transform: translate(-50%, 20px); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.toast button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* BOUTON DANGER */
+.danger {
+    background: #7f1d1d;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    color: white;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.danger:hover {
+    background: #991b1b;
+}
+
