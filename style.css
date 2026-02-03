@@ -200,7 +200,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    overflow: hidden;
+    z-index: 9999;
 }
 
 .hidden { 
@@ -235,6 +235,7 @@ main {
 
 .modal-content * {
     max-width: 100%;
+    position: relative;
 }
 
 /* Animation */
@@ -246,21 +247,21 @@ main {
 /* CLOSE BUTTON */
 .close-btn {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
+    top: 18px;
+    right: 18px;
+    background: transparent;
     border: none;
     font-size: 22px;
     cursor: pointer;
-    color: white;
-    z-index: 1000; /* important */
-    transition: 0.2s;
+    color: #3b82f6;
+    z-index: 10000; /* 👈 au-dessus du contenu */
+    transition: 0.2s ease;
 }
 
 .close-btn:hover {
     transform: scale(1.2);
+    text-shadow: 0 0 10px rgba(59,130,246,0.8);
 }
-
 
 input, select {
     width: 100%;
