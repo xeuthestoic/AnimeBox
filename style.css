@@ -15,26 +15,6 @@
     position: relative;
 }
 
-.top-actions {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-
-.discord-btn img {
-    height: 22px;
-    transition: 0.2s ease;
-}
-
-.discord-btn img:hover {
-    transform: scale(1.15);
-}
-
-
 .icon-btn {
     position: absolute;
     right: 20px;
@@ -268,6 +248,22 @@ input, select {
     left: 20px;
     height: 40px;
 }
+
+.logo-link {
+    position: absolute;
+    left: 20px;
+    display: inline-block;
+}
+
+.logo-link img {
+    height: 40px;
+    transition: 0.2s ease;
+}
+
+.logo-link img:hover {
+    transform: scale(1.1);
+}
+
 
 .settings-version {
     font-size: 13px;
