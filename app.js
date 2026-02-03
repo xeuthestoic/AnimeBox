@@ -166,9 +166,10 @@ function showLibrary(){
     `;
 }
 
-function searchAnime(q){
-    searchQuery = q;
-    showLibrary();
+const input = document.getElementById("searchInput");
+if(input){
+    input.focus();
+    input.setSelectionRange(searchQuery.length, searchQuery.length);
 }
 
 function clearSearch(){
