@@ -157,6 +157,7 @@ main {
     inset: 0;
     background: rgba(0,0,0,0.75);
     backdrop-filter: blur(8px);
+    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 999;
@@ -276,34 +277,33 @@ input, select {
     background: #991b1b;
 }
 
+
+/* Affichage Mobile */
 @media (max-width: 600px) {
 
+    .modal {
+        align-items: flex-end; /* 🔥 IMPORTANT */
+    }
+
     .modal-content {
-        width: 95%;
-        max-width: none;
+        width: 100%;
+        max-width: 100%;
         border-radius: 25px 25px 0 0;
-        position: absolute;
-        bottom: 0;
         animation: slideUp 0.3s ease;
     }
 
     @keyframes slideUp {
-        from {
-            transform: translateY(100%);
-        }
-        to {
-            transform: translateY(0);
-        }
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
     }
 
     .bottom-nav {
-        width: 90%;
+        width: 92%;
     }
 
     .search-bar {
         width: 92%;
     }
-
 }
 
 /* VERSION BOTTOM RIGHT */
