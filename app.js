@@ -269,8 +269,11 @@ function saveAnime(){
 
 function openSettings(){
     const modal = document.getElementById("settingsModal");
+
     modal.classList.remove("hidden");
-    modal.style.display = "flex";
+
+    // Affiche la version
+    document.getElementById("settingsVersion").textContent = APP_VERSION;
 }
 
 function closeSettings(){
