@@ -15,6 +15,26 @@
     position: relative;
 }
 
+.top-actions {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.discord-btn img {
+    height: 22px;
+    transition: 0.2s ease;
+}
+
+.discord-btn img:hover {
+    transform: scale(1.15);
+}
+
+
 .icon-btn {
     position: absolute;
     right: 20px;
