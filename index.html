@@ -9,6 +9,13 @@
 <meta name="theme-color" content="#020617">
 </head>
 
+<!-- TOAST NOTIFICATION -->
+<div id="toast" class="toast hidden">
+    <span id="toastMessage"></span>
+    <button onclick="closeToast()">❌</button>
+</div>
+
+
 <body>
 
 <header class="topbar">
@@ -65,6 +72,8 @@
 
         <button class="primary" onclick="exportJSON()">Exporter JSON</button>
         <input type="file" accept=".json" onchange="importJSON(event)">
+
+        <button class="danger" onclick="resetData()">Réinitialiser les données</button>
     </div>
 </div>
 
