@@ -74,15 +74,19 @@ function showHome(){
 
 function addDefaultAnime(index){
     const data = getData();
-    const exists = data.find(a => a.name === DEFAULT_ANIMES[index].name 
-        && a.season === DEFAULT_ANIMES[index].season);
+    const anime = DEFAULT_ANIMES[index];
+
+    const exists = data.find(a => 
+        a.name === anime.name &&
+        a.season === anime.season
+    );
 
     if(!exists){
-        data.push({...DEFAULT_ANIMES[index]});
+        data.push({...anime});
         saveData(data);
-        alert("Ajouté à ta bibliothèque ✅");
+        showToast("Ajouté à ta bibliothèque ✅");
     } else {
-        alert("Déjà dans ta bibliothèque");
+        showToast("Déjà dans ta bibliothèque ⚠️");
     }
 }
 
