@@ -184,9 +184,23 @@ main {
     max-width: 420px;
     max-height: 85vh;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 60px 20px 25px 20px;
     border-radius: 22px;
-    animation: pop 0.25s ease;
+    box-sizing: border-box;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea,
+.modal-content button {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.modal-content * {
+    max-width: 100%;
 }
 
 /* Animation */
@@ -299,6 +313,11 @@ input, select {
 
 .danger:hover {
     background: #991b1b;
+}
+
+/* Other */ 
+html, body {
+    overflow-x: hidden;
 }
 
 /* VERSION BOTTOM RIGHT */
