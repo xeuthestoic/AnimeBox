@@ -1,5 +1,5 @@
 /* =========================
-   CONFIGURATION
+   SUGGESTIONS PAR DÉFAUT
 ========================= */
 
 const DEFAULT_ANIMES = [
@@ -8,8 +8,8 @@ const DEFAULT_ANIMES = [
         season: "S1",
         name: "Attack on Titan",
         total: 87,
-        current: 87,
-        status: "Terminé",
+        current: 0,
+        status: "En cours",
         cover: "https://cdn.myanimelist.net/images/anime/10/47347.jpg"
     },
     {
@@ -17,7 +17,7 @@ const DEFAULT_ANIMES = [
         season: "S2",
         name: "Jujutsu Kaisen",
         total: 47,
-        current: 30,
+        current: 0,
         status: "En cours",
         cover: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg"
     },
@@ -26,7 +26,7 @@ const DEFAULT_ANIMES = [
         season: null,
         name: "Berserk",
         total: 364,
-        current: 120,
+        current: 0,
         status: "En cours",
         cover: "https://cdn.myanimelist.net/images/manga/1/157897.jpg"
     }
@@ -50,28 +50,40 @@ function saveData(data){
     localStorage.setItem("animebox", JSON.stringify(data));
 }
 
-function initDefaultAnimes(){
-    if(!localStorage.getItem("animebox")){
-        saveData(DEFAULT_ANIMES);
-    }
-}
-
 /* =========================
-   HOME
+   HOME (Suggestions)
 ========================= */
 
 function showHome(){
     content.innerHTML = `
-        <h2>Bienvenue sur AnimeBox</h2>
-        <p>Version 7.0</p>
+        <h2>Suggestions</h2>
+        <p>Clique pour ajouter à ta bibliothèque</p>
         <div class="grid">
-            ${getData().slice(0,6).map(a=>`
-                <div class="card">
+            ${DEFAULT_ANIMES.map((a,i)=>`
+                <div class="card" onclick="addDefaultAnime(${i})">
                     <img src="${a.cover}">
+                    <div style="padding:8px;font-size:13px;">
+                        ${a.name}
+                        ${a.type === "anime" && a.season ? ` • ${a.season}` : ""}
+                    </div>
                 </div>
             `).join("")}
         </div>
     `;
+}
+
+function addDefaultAnime(index){
+    const data = getData();
+    const exists = data.find(a => a.name === DEFAULT_ANIMES[index].name 
+        && a.season === DEFAULT_ANIMES[index].season);
+
+    if(!exists){
+        data.push({...DEFAULT_ANIMES[index]});
+        saveData(data);
+        alert("Ajouté à ta bibliothèque ✅");
+    } else {
+        alert("Déjà dans ta bibliothèque");
+    }
 }
 
 /* =========================
@@ -116,9 +128,13 @@ function showLibrary(){
             ${data.map((a,i)=>`
                 <div class="card" onclick="openEdit(${i})">
                     <img src="${a.cover}">
-                    <div style="padding:8px;font-size:12px;">
-                        ${a.type === "anime" ? "🎬 Anime" : "📖 Manga"}
+                    <div style="padding:8px;font-size:13px;">
+                        <strong>${a.name}</strong>
                         ${a.type === "anime" && a.season ? ` • ${a.season}` : ""}
+                        <br>
+                        ${a.type === "anime"
+                            ? `🎬 Épisode ${a.current} / ${a.total}`
+                            : `📖 Chapitre ${a.current} / ${a.total}`}
                     </div>
                 </div>
             `).join("")}
@@ -168,7 +184,6 @@ function openEdit(index){
     }
 
     toggleSeasonField();
-
     document.querySelector(".primary").textContent = "Mettre à jour";
 
     document.getElementById("addModal").classList.remove("hidden");
@@ -274,7 +289,6 @@ document.getElementById("addTab").onclick = () =>
     document.getElementById("addModal").classList.remove("hidden");
 
 window.addEventListener("DOMContentLoaded", () => {
-    initDefaultAnimes();
     toggleSeasonField();
     showHome();
 });
