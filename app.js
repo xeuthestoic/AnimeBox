@@ -1,9 +1,48 @@
+/* =========================
+   CONFIGURATION
+========================= */
+
+const DEFAULT_ANIMES = [
+    {
+        type: "anime",
+        season: "S1",
+        name: "Attack on Titan",
+        total: 87,
+        current: 87,
+        status: "Terminé",
+        cover: "https://cdn.myanimelist.net/images/anime/10/47347.jpg"
+    },
+    {
+        type: "anime",
+        season: "S2",
+        name: "Jujutsu Kaisen",
+        total: 47,
+        current: 30,
+        status: "En cours",
+        cover: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg"
+    },
+    {
+        type: "manga",
+        season: null,
+        name: "Berserk",
+        total: 364,
+        current: 120,
+        status: "En cours",
+        cover: "https://cdn.myanimelist.net/images/manga/1/157897.jpg"
+    }
+];
+
 const customAddButtonLink = null;
+
+/* ========================= */
 
 let currentFilter = "Tous";
 let searchQuery = "";
-
 const content = document.getElementById("content");
+
+/* =========================
+   DATA
+========================= */
 
 function getData(){
     return JSON.parse(localStorage.getItem("animebox")) || [];
@@ -13,13 +52,33 @@ function saveData(data){
     localStorage.setItem("animebox", JSON.stringify(data));
 }
 
+function initDefaultAnimes(){
+    if(!localStorage.getItem("animebox")){
+        saveData(DEFAULT_ANIMES);
+    }
+}
+
+/* =========================
+   HOME
+========================= */
+
 function showHome(){
     content.innerHTML = `
         <h2>Bienvenue sur AnimeBox</h2>
-        <p>Version Release : 1.0</p>
-        <p>Créé par xeuthestoic</p>
+        <p>Version 6.0</p>
+        <div class="grid">
+            ${getData().slice(0,6).map(a=>`
+                <div class="card">
+                    <img src="${a.cover}">
+                </div>
+            `).join("")}
+        </div>
     `;
 }
+
+/* =========================
+   LIBRARY
+========================= */
 
 function showLibrary(){
     let data = getData();
@@ -36,12 +95,14 @@ function showLibrary(){
 
     content.innerHTML = `
         <div class="search-bar">
+            <span class="search-icon">🔍</span>
             <input 
                 id="searchInput"
                 type="text" 
                 placeholder="Rechercher..."
                 value="${searchQuery}"
                 oninput="searchAnime(this.value)">
+            <button class="clear-btn" onclick="clearSearch()">❌</button>
         </div>
 
         <div class="filters">
@@ -58,12 +119,15 @@ function showLibrary(){
             ${data.map(a=>`
                 <div class="card">
                     <img src="${a.cover}">
+                    <div style="padding:8px;font-size:12px;">
+                        ${a.type === "anime" ? "🎬 Anime" : "📖 Manga"}
+                        ${a.type === "anime" && a.season ? `• ${a.season}` : ""}
+                    </div>
                 </div>
             `).join("")}
         </div>
     `;
 
-    // Remet le focus après render
     const input = document.getElementById("searchInput");
     if(input){
         input.focus();
@@ -71,14 +135,29 @@ function showLibrary(){
     }
 }
 
+function searchAnime(q){
+    searchQuery = q;
+    showLibrary();
+}
+
+function clearSearch(){
+    searchQuery = "";
+    showLibrary();
+}
+
 function setFilter(f){
     currentFilter = f;
     showLibrary();
 }
 
-function searchAnime(q){
-    searchQuery = q;
-    showLibrary();
+/* =========================
+   ADD
+========================= */
+
+function toggleSeasonField(){
+    const type = document.getElementById("type").value;
+    const seasonContainer = document.getElementById("seasonContainer");
+    seasonContainer.style.display = type === "anime" ? "block" : "none";
 }
 
 function saveAnime(){
@@ -88,6 +167,10 @@ function saveAnime(){
     reader.onload = function(){
         const data = getData();
         data.push({
+            type: document.getElementById("type").value,
+            season: document.getElementById("type").value === "anime"
+                ? document.getElementById("season").value
+                : null,
             name: document.getElementById("name").value,
             total: document.getElementById("total").value,
             current: document.getElementById("current").value,
@@ -101,6 +184,10 @@ function saveAnime(){
 
     if(file) reader.readAsDataURL(file);
 }
+
+/* =========================
+   SETTINGS
+========================= */
 
 function openSettings(){
     document.getElementById("settingsModal").classList.remove("hidden");
@@ -132,16 +219,25 @@ function importJSON(event){
     reader.readAsText(event.target.files[0]);
 }
 
+/* =========================
+   INIT
+========================= */
+
 document.getElementById("homeTab").onclick = showHome;
 document.getElementById("libraryTab").onclick = showLibrary;
 document.getElementById("addTab").onclick = () =>
     document.getElementById("addModal").classList.remove("hidden");
 
 window.addEventListener("DOMContentLoaded", () => {
+
+    initDefaultAnimes();
+    toggleSeasonField();
+
     if(customAddButtonLink){
         const btn = document.querySelector(".add-btn");
         btn.innerHTML = `<img src="${customAddButtonLink}" style="width:28px;height:28px;">`;
         btn.style.background = "none";
     }
+
     showHome();
 });
