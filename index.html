@@ -9,13 +9,6 @@
 <meta name="theme-color" content="#020617">
 </head>
 
-<!-- TOAST NOTIFICATION -->
-<div id="toast" class="toast hidden">
-    <span id="toastMessage"></span>
-    <button onclick="closeToast()">❌</button>
-</div>
-
-
 <body>
 
 <header class="topbar">
@@ -43,7 +36,6 @@
             <option value="manga">Manga</option>
         </select>
 
-        <!-- Saison visible uniquement pour Anime -->
         <div id="seasonContainer">
             <input type="text" id="season" placeholder="Saison (ex: S1, Film)">
         </div>
@@ -77,6 +69,13 @@
     </div>
 </div>
 
+<!-- TOAST NOTIFICATION (PLACÉ CORRECTEMENT DANS BODY) -->
+<div id="toast" class="toast hidden">
+    <span id="toastMessage"></span>
+    <button onclick="closeToast()">❌</button>
+</div>
+
 <script src="app.js"></script>
+
 </body>
 </html>
