@@ -272,14 +272,12 @@ function openSettings(){
 
     modal.classList.remove("hidden");
 
-    // Affiche la version
     document.getElementById("settingsVersion").textContent = APP_VERSION;
 }
 
 function closeSettings(){
     const modal = document.getElementById("settingsModal");
     modal.classList.add("hidden");
-    modal.style.display = "none";
 }
 
 function closeModal(){
