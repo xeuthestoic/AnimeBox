@@ -280,6 +280,27 @@ function importJSON(event){
 }
 
 /* =========================
+   TOAST SYSTEM
+========================= */
+
+function showToast(message){
+    const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toastMessage");
+
+    toastMessage.textContent = message;
+    toast.classList.remove("hidden");
+
+    setTimeout(() => {
+        toast.classList.add("hidden");
+    }, 3000);
+}
+
+function closeToast(){
+    document.getElementById("toast").classList.add("hidden");
+}
+
+
+/* =========================
    INIT
 ========================= */
 
