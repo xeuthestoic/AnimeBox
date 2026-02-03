@@ -35,7 +35,7 @@ const DEFAULT_ANIMES = [
     }
 ];
 
-const APP_VERSION = "v1.3";
+const APP_VERSION = "v1.4";
 
 let currentFilter = "Tous";
 let searchQuery = "";
