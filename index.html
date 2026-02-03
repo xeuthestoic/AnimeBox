@@ -7,15 +7,11 @@
 
 <link rel="stylesheet" href="style.css">
 <meta name="theme-color" content="#020617">
-
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 
 <body>
 
 <header class="topbar">
-    <img src="assets/logo.png" class="logo">
     <h1>AnimeBox</h1>
     <button class="icon-btn" onclick="openSettings()">⚙️</button>
 </header>
@@ -34,8 +30,17 @@
         <button class="close-btn" onclick="closeModal()">❌</button>
         <h2>Ajouter</h2>
 
+        <select id="type" onchange="toggleSeasonField()">
+            <option value="anime">Anime</option>
+            <option value="manga">Manga</option>
+        </select>
+
+        <div id="seasonContainer">
+            <input type="text" id="season" placeholder="Saison (ex: S1, S2, Film)">
+        </div>
+
         <input type="text" id="name" placeholder="Titre">
-        <input type="number" id="total" placeholder="Total épisodes">
+        <input type="number" id="total" placeholder="Total épisodes/chapitres">
         <input type="number" id="current" placeholder="Progression">
         <input type="file" id="cover" accept="image/*">
 
