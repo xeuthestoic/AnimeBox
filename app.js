@@ -9,7 +9,7 @@ const DEFAULT_ANIMES = [
         name: "Attack on Titan",
         total: 87,
         current: 0,
-        status: "En cours",
+        status: null,
         cover: "https://cdn.myanimelist.net/images/anime/10/47347.jpg"
     },
     {
@@ -18,7 +18,7 @@ const DEFAULT_ANIMES = [
         name: "Jujutsu Kaisen",
         total: 47,
         current: 0,
-        status: "En cours",
+        status: null,
         cover: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg"
     },
     {
@@ -27,7 +27,7 @@ const DEFAULT_ANIMES = [
         name: "Berserk",
         total: 364,
         current: 0,
-        status: "En cours",
+        status: null,
         cover: "https://cdn.myanimelist.net/images/manga/1/157897.jpg"
     }
 ];
