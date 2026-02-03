@@ -322,6 +322,15 @@ function resetData(){
     showLibrary();
 }
 
+document.querySelectorAll(".modal").forEach(modal => {
+    modal.addEventListener("click", function(e){
+        if(e.target === modal){
+            modal.classList.add("hidden");
+        }
+    });
+});
+
+
 /* =========================
    TOAST SYSTEM
 ========================= */
