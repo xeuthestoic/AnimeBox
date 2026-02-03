@@ -32,6 +32,8 @@ const DEFAULT_ANIMES = [
     }
 ];
 
+const APP_VERSION = "v1.0.0";
+
 let currentFilter = "Tous";
 let searchQuery = "";
 let editIndex = null;
@@ -59,6 +61,7 @@ function showHome(){
     content.innerHTML = `
         <h2>Suggestions</h2>
         <p>Clique pour ajouter à ta bibliothèque</p>
+
         <div class="grid">
             ${DEFAULT_ANIMES.map((a,i)=>`
                 <div class="card" onclick="addDefaultAnime(${i})">
@@ -69,6 +72,10 @@ function showHome(){
                     </div>
                 </div>
             `).join("")}
+        </div>
+
+        <div class="app-version">
+            AnimeBox ${APP_VERSION}
         </div>
     `;
 }
