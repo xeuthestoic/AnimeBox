@@ -94,7 +94,7 @@ main {
 @media (max-width: 600px) {
 
     .search-bar {
-        margin: 10px auto;
+        margin: 10px;
         width: 75%;
         max-width: 250px;
     }
