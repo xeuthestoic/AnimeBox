@@ -306,19 +306,14 @@ function resetData(){
    TOAST SYSTEM
 ========================= */
 
-/* =========================
-   TOAST SYSTEM
-========================= */
-
 function showToast(message){
     const toast = document.getElementById("toast");
     const toastMessage = document.getElementById("toastMessage");
 
     toastMessage.textContent = message;
 
-    // Reset animation
+    toast.classList.remove("hidden");
     toast.style.opacity = "1";
-    toast.style.display = "flex";
 
     if(toastTimeout){
         clearTimeout(toastTimeout);
@@ -327,9 +322,9 @@ function showToast(message){
     toastTimeout = setTimeout(() => {
         toast.style.opacity = "0";
         setTimeout(() => {
-            toast.style.display = "none";
-        }, 200); // petit délai pour le fade
-    }, 2000); // 👈 2 secondes
+            toast.classList.add("hidden");
+        }, 200);
+    }, 2000);
 }
 
 function closeToast(){
@@ -339,7 +334,7 @@ function closeToast(){
         clearTimeout(toastTimeout);
     }
 
-    toast.style.display = "none";
+    toast.classList.add("hidden");
 }
 
 
