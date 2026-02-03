@@ -34,6 +34,8 @@ const DEFAULT_ANIMES = [
 
 let currentFilter = "Tous";
 let searchQuery = "";
+let editIndex = null;
+
 const content = document.getElementById("content");
 
 /* =========================
@@ -61,7 +63,7 @@ function initDefaultAnimes(){
 function showHome(){
     content.innerHTML = `
         <h2>Bienvenue sur AnimeBox</h2>
-        <p>Version 6.1</p>
+        <p>Version 7.0</p>
         <div class="grid">
             ${getData().slice(0,6).map(a=>`
                 <div class="card">
@@ -111,8 +113,8 @@ function showLibrary(){
         </div>
 
         <div class="grid">
-            ${data.map(a=>`
-                <div class="card">
+            ${data.map((a,i)=>`
+                <div class="card" onclick="openEdit(${i})">
                     <img src="${a.cover}">
                     <div style="padding:8px;font-size:12px;">
                         ${a.type === "anime" ? "🎬 Anime" : "📖 Manga"}
@@ -146,7 +148,34 @@ function setFilter(f){
 }
 
 /* =========================
-   ADD
+   EDIT
+========================= */
+
+function openEdit(index){
+    const data = getData();
+    const anime = data[index];
+
+    editIndex = index;
+
+    document.getElementById("type").value = anime.type;
+    document.getElementById("name").value = anime.name;
+    document.getElementById("total").value = anime.total;
+    document.getElementById("current").value = anime.current;
+    document.getElementById("status").value = anime.status;
+
+    if(anime.type === "anime"){
+        document.getElementById("season").value = anime.season || "";
+    }
+
+    toggleSeasonField();
+
+    document.querySelector(".primary").textContent = "Mettre à jour";
+
+    document.getElementById("addModal").classList.remove("hidden");
+}
+
+/* =========================
+   ADD / UPDATE
 ========================= */
 
 function toggleSeasonField(){
@@ -156,28 +185,47 @@ function toggleSeasonField(){
 }
 
 function saveAnime(){
-    const file = document.getElementById("cover").files[0];
-    const reader = new FileReader();
+    const data = getData();
 
-    reader.onload = function(){
-        const data = getData();
-        data.push({
-            type: document.getElementById("type").value,
-            season: document.getElementById("type").value === "anime"
-                ? document.getElementById("season").value
-                : null,
-            name: document.getElementById("name").value,
-            total: document.getElementById("total").value,
-            current: document.getElementById("current").value,
-            status: document.getElementById("status").value,
-            cover: reader.result
-        });
-        saveData(data);
-        closeModal();
-        showLibrary();
+    const type = document.getElementById("type").value;
+
+    const newData = {
+        type: type,
+        season: type === "anime"
+            ? document.getElementById("season").value
+            : null,
+        name: document.getElementById("name").value,
+        total: document.getElementById("total").value,
+        current: document.getElementById("current").value,
+        status: document.getElementById("status").value,
+        cover: data[editIndex]?.cover || ""
     };
 
-    if(file) reader.readAsDataURL(file);
+    if(editIndex !== null){
+        data[editIndex] = newData;
+        editIndex = null;
+    } else {
+        const file = document.getElementById("cover").files[0];
+        if(file){
+            const reader = new FileReader();
+            reader.onload = function(){
+                newData.cover = reader.result;
+                data.push(newData);
+                saveData(data);
+                showLibrary();
+            };
+            reader.readAsDataURL(file);
+            closeModal();
+            return;
+        }
+        data.push(newData);
+    }
+
+    saveData(data);
+    closeModal();
+    showLibrary();
+
+    document.querySelector(".primary").textContent = "Ajouter";
 }
 
 /* =========================
@@ -194,6 +242,8 @@ function closeSettings(){
 
 function closeModal(){
     document.getElementById("addModal").classList.add("hidden");
+    editIndex = null;
+    document.querySelector(".primary").textContent = "Ajouter";
 }
 
 function exportJSON(){
