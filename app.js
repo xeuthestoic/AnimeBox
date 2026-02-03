@@ -365,9 +365,7 @@ function closeToast(){
 document.getElementById("homeTab").onclick = showHome;
 document.getElementById("libraryTab").onclick = showLibrary;
 document.getElementById("addTab").onclick = () => {
-    const modal = document.getElementById("addModal");
-    modal.classList.remove("hidden");
-    modal.style.display = "flex";
+   document.getElementById("addModal").classList.remove("hidden");
 };
 
 window.addEventListener("DOMContentLoaded", () => {
