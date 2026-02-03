@@ -233,10 +233,11 @@ input, select {
     background: linear-gradient(180deg,#1f2937,#000);
     padding: 12px 20px;
     border-radius: 12px;
-    display: none; /* IMPORTANT */
+    display: none;
     align-items: center;
     gap: 10px;
     z-index: 3000;
+    transition: opacity 0.2s ease; /* 👈 AJOUT */
 }
 
 .hidden {
