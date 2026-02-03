@@ -36,7 +36,11 @@ function showLibrary(){
 
     content.innerHTML = `
         <div class="search-bar">
-            <input type="text" placeholder="Rechercher..."
+            <input 
+                id="searchInput"
+                type="text" 
+                placeholder="Rechercher..."
+                value="${searchQuery}"
                 oninput="searchAnime(this.value)">
         </div>
 
@@ -58,6 +62,13 @@ function showLibrary(){
             `).join("")}
         </div>
     `;
+
+    // Remet le focus après render
+    const input = document.getElementById("searchInput");
+    if(input){
+        input.focus();
+        input.setSelectionRange(searchQuery.length, searchQuery.length);
+    }
 }
 
 function setFilter(f){
