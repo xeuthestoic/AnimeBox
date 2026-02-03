@@ -234,12 +234,16 @@ input, select {
     background: linear-gradient(180deg,#1f2937,#000);
     padding: 12px 20px;
     border-radius: 12px;
-    display: flex;
+    display: none; /* IMPORTANT */
     align-items: center;
     gap: 10px;
-    animation: slideUpToast 0.3s ease;
-    z-index: 2000;
+    z-index: 3000;
 }
+
+.hidden {
+    display: none !important;
+}
+
 
 @keyframes slideUpToast {
     from { transform: translate(-50%, 20px); opacity: 0; }
