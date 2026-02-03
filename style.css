@@ -170,7 +170,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    padding: 20px;
+    overflow: hidden;
 }
 
 .hidden { 
@@ -178,16 +179,11 @@ main {
 }
 
 .modal-content {
-    position: relative;
-    background: linear-gradient(180deg,#111827,#000);
-    width: 92%;
+    width: 100%;
     max-width: 420px;
-    max-height: 85vh;
+    max-height: 90vh;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 60px 20px 25px 20px;
-    border-radius: 22px;
-    box-sizing: border-box;
 }
 
 .modal-content input,
