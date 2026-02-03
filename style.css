@@ -268,3 +268,14 @@ input, select {
     background: #991b1b;
 }
 
+/* VERSION BOTTOM RIGHT */
+.app-version {
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    font-size: 12px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
