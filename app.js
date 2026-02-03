@@ -303,6 +303,13 @@ function closeToast(){
     document.getElementById("toast").classList.add("hidden");
 }
 
+function resetData(){
+    localStorage.removeItem("animebox");
+    closeSettings();
+    showToast("Données réinitialisées 🗑");
+    showLibrary();
+}
+
 
 /* =========================
    INIT
