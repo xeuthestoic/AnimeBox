@@ -10,7 +10,8 @@ const DEFAULT_ANIMES = [
         total: 87,
         current: 0,
         status: null,
-        cover: "https://cdn.myanimelist.net/images/anime/10/47347.jpg"
+        cover: "https://cdn.myanimelist.net/images/anime/10/47347.jpg",
+        link: "https://example.com/jjk"
     },
     {
         type: "anime",
@@ -19,7 +20,8 @@ const DEFAULT_ANIMES = [
         total: 47,
         current: 0,
         status: null,
-        cover: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg"
+        cover: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg",
+        link: "https://example.com/jjk"
     },
     {
         type: "manga",
@@ -28,7 +30,8 @@ const DEFAULT_ANIMES = [
         total: 364,
         current: 0,
         status: null,
-        cover: "https://cdn.myanimelist.net/images/manga/1/157897.jpg"
+        cover: "https://cdn.myanimelist.net/images/manga/1/157897.jpg",
+        link: "https://example.com/jjk"
     }
 ];
 
@@ -147,6 +150,15 @@ function showLibrary(){
                         ${a.type === "anime"
                             ? `🎬 | Épisode ${a.current} / ${a.total}`
                             : `📖 | Chapitre ${a.current} / ${a.total}`}
+                        ${a.link ? `
+                            <br>
+                            <a href="${a.link}" 
+                               target="_blank" 
+                               onclick="event.stopPropagation()"
+                               style="color:#60a5fa;text-decoration:none;">
+                               🔗 Ouvrir
+                            </a>
+                        ` : ""}
                     </div>
                 </div>
             `).join("")}
@@ -190,12 +202,14 @@ function openEdit(index){
     document.getElementById("total").value = anime.total;
     document.getElementById("current").value = anime.current;
     document.getElementById("status").value = anime.status;
+    document.getElementById("link").value = anime.link || "";
 
     if(anime.type === "anime"){
         document.getElementById("season").value = anime.season || "";
     }
 
     toggleSeasonField();
+
     document.querySelector(".primary").textContent = "Mettre à jour";
 
     document.getElementById("addModal").classList.remove("hidden");
@@ -224,6 +238,7 @@ function saveAnime(){
         total: document.getElementById("total").value,
         current: document.getElementById("current").value,
         status: document.getElementById("status").value,
+        link: document.getElementById("link").value || null,
         cover: editIndex !== null ? data[editIndex].cover : ""
     };
 
@@ -250,6 +265,7 @@ function saveAnime(){
     saveData(data);
     closeModal();
     showLibrary();
+
     document.querySelector(".primary").textContent = "Ajouter";
 }
 
@@ -271,10 +287,19 @@ function closeSettings(){
 
 function closeModal(){
     const modal = document.getElementById("addModal");
+
     modal.classList.add("hidden");
-    modal.style.display = "none";
+
     editIndex = null;
+
     document.querySelector(".primary").textContent = "Ajouter";
+
+    // Reset formulaire
+    document.getElementById("name").value = "";
+    document.getElementById("total").value = "";
+    document.getElementById("current").value = "";
+    document.getElementById("season").value = "";
+    document.getElementById("link").value = "";
 }
 
 function exportJSON(){
