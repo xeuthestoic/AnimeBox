@@ -164,12 +164,6 @@ function showLibrary(){
             `).join("")}
         </div>
     `;
-
-    const input = document.getElementById("searchInput");
-    if(input){
-        input.focus();
-        input.setSelectionRange(searchQuery.length, searchQuery.length);
-    }
 }
 
 function searchAnime(q){
