@@ -35,6 +35,7 @@ const DEFAULT_ANIMES = [
 let currentFilter = "Tous";
 let searchQuery = "";
 let editIndex = null;
+let toastTimeout = null;
 
 const content = document.getElementById("content");
 
@@ -51,7 +52,7 @@ function saveData(data){
 }
 
 /* =========================
-   HOME (Suggestions)
+   HOME
 ========================= */
 
 function showHome(){
@@ -205,7 +206,6 @@ function toggleSeasonField(){
 
 function saveAnime(){
     const data = getData();
-
     const type = document.getElementById("type").value;
 
     const newData = {
@@ -217,7 +217,7 @@ function saveAnime(){
         total: document.getElementById("total").value,
         current: document.getElementById("current").value,
         status: document.getElementById("status").value,
-        cover: data[editIndex]?.cover || ""
+        cover: editIndex !== null ? data[editIndex].cover : ""
     };
 
     if(editIndex !== null){
@@ -243,7 +243,6 @@ function saveAnime(){
     saveData(data);
     closeModal();
     showLibrary();
-
     document.querySelector(".primary").textContent = "Ajouter";
 }
 
@@ -283,6 +282,13 @@ function importJSON(event){
     reader.readAsText(event.target.files[0]);
 }
 
+function resetData(){
+    localStorage.removeItem("animebox");
+    closeSettings();
+    showToast("Données réinitialisées 🗑");
+    showLibrary();
+}
+
 /* =========================
    TOAST SYSTEM
 ========================= */
@@ -294,22 +300,22 @@ function showToast(message){
     toastMessage.textContent = message;
     toast.classList.remove("hidden");
 
-    setTimeout(() => {
+    if(toastTimeout){
+        clearTimeout(toastTimeout);
+    }
+
+    toastTimeout = setTimeout(() => {
         toast.classList.add("hidden");
     }, 3000);
 }
 
 function closeToast(){
-    document.getElementById("toast").classList.add("hidden");
+    const toast = document.getElementById("toast");
+    if(toastTimeout){
+        clearTimeout(toastTimeout);
+    }
+    toast.classList.add("hidden");
 }
-
-function resetData(){
-    localStorage.removeItem("animebox");
-    closeSettings();
-    showToast("Données réinitialisées 🗑");
-    showLibrary();
-}
-
 
 /* =========================
    INIT
