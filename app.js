@@ -305,14 +305,14 @@ function showToast(message){
     const toastMessage = document.getElementById("toastMessage");
 
     toastMessage.textContent = message;
-    toast.classList.remove("hidden");
+    toast.style.display = "flex";
 
     if(toastTimeout){
         clearTimeout(toastTimeout);
     }
 
     toastTimeout = setTimeout(() => {
-        toast.classList.add("hidden");
+        toast.style.display = "none";
     }, 3000);
 }
 
@@ -321,8 +321,9 @@ function closeToast(){
     if(toastTimeout){
         clearTimeout(toastTimeout);
     }
-    toast.classList.add("hidden");
+    toast.style.display = "none";
 }
+
 
 /* =========================
    INIT
