@@ -32,10 +32,6 @@ const DEFAULT_ANIMES = [
     }
 ];
 
-const customAddButtonLink = null;
-
-/* ========================= */
-
 let currentFilter = "Tous";
 let searchQuery = "";
 const content = document.getElementById("content");
@@ -65,7 +61,7 @@ function initDefaultAnimes(){
 function showHome(){
     content.innerHTML = `
         <h2>Bienvenue sur AnimeBox</h2>
-        <p>Version 6.0</p>
+        <p>Version 6.1</p>
         <div class="grid">
             ${getData().slice(0,6).map(a=>`
                 <div class="card">
@@ -95,14 +91,13 @@ function showLibrary(){
 
     content.innerHTML = `
         <div class="search-bar">
-            <span class="search-icon">🔍</span>
             <input 
                 id="searchInput"
                 type="text" 
                 placeholder="Rechercher..."
                 value="${searchQuery}"
                 oninput="searchAnime(this.value)">
-            <button class="clear-btn" onclick="clearSearch()">❌</button>
+            ${searchQuery ? `<button class="clear-btn" onclick="clearSearch()">❌</button>` : ""}
         </div>
 
         <div class="filters">
@@ -121,7 +116,7 @@ function showLibrary(){
                     <img src="${a.cover}">
                     <div style="padding:8px;font-size:12px;">
                         ${a.type === "anime" ? "🎬 Anime" : "📖 Manga"}
-                        ${a.type === "anime" && a.season ? `• ${a.season}` : ""}
+                        ${a.type === "anime" && a.season ? ` • ${a.season}` : ""}
                     </div>
                 </div>
             `).join("")}
@@ -229,15 +224,7 @@ document.getElementById("addTab").onclick = () =>
     document.getElementById("addModal").classList.remove("hidden");
 
 window.addEventListener("DOMContentLoaded", () => {
-
     initDefaultAnimes();
     toggleSeasonField();
-
-    if(customAddButtonLink){
-        const btn = document.querySelector(".add-btn");
-        btn.innerHTML = `<img src="${customAddButtonLink}" style="width:28px;height:28px;">`;
-        btn.style.background = "none";
-    }
-
     showHome();
 });
