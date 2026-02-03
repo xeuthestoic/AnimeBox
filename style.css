@@ -72,8 +72,8 @@ main {
 .search-bar {
     position: relative;
     margin: 20px auto;
-    width: 85%;
-    max-width: 500px;
+    width: 80%;
+    max-width: 400px;
 }
 
 .search-bar input {
@@ -89,6 +89,15 @@ main {
 .search-bar input:focus {
     transform: scale(1.02);
     outline: none;
+}
+
+@media (max-width: 600px) {
+
+    .search-bar {
+        width: 75%;
+        max-width: 320px;
+    }
+
 }
 
 .clear-btn {
@@ -282,35 +291,6 @@ input, select {
 
 .danger:hover {
     background: #991b1b;
-}
-
-
-/* Affichage Mobile */
-@media (max-width: 600px) {
-
-    .modal {
-        align-items: flex-end; /* 🔥 IMPORTANT */
-    }
-
-    .modal-content {
-        width: 100%;
-        max-width: 100%;
-        border-radius: 25px 25px 0 0;
-        animation: slideUp 0.3s ease;
-    }
-
-    @keyframes slideUp {
-        from { transform: translateY(100%); }
-        to { transform: translateY(0); }
-    }
-
-    .bottom-nav {
-        width: 92%;
-    }
-
-    .search-bar {
-        width: 92%;
-    }
 }
 
 /* VERSION BOTTOM RIGHT */
