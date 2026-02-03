@@ -94,7 +94,7 @@ main {
 @media (max-width: 600px) {
 
     .search-bar {
-        width: 75%;
+        width: 55%;
         max-width: 320px;
     }
 
