@@ -258,15 +258,21 @@ function saveAnime(){
 ========================= */
 
 function openSettings(){
-    document.getElementById("settingsModal").classList.remove("hidden");
+    const modal = document.getElementById("settingsModal");
+    modal.classList.remove("hidden");
+    modal.style.display = "flex";
 }
 
 function closeSettings(){
-    document.getElementById("settingsModal").classList.add("hidden");
+    const modal = document.getElementById("settingsModal");
+    modal.classList.add("hidden");
+    modal.style.display = "none";
 }
 
 function closeModal(){
-    document.getElementById("addModal").classList.add("hidden");
+    const modal = document.getElementById("addModal");
+    modal.classList.add("hidden");
+    modal.style.display = "none";
     editIndex = null;
     document.querySelector(".primary").textContent = "Ajouter";
 }
@@ -331,8 +337,11 @@ function closeToast(){
 
 document.getElementById("homeTab").onclick = showHome;
 document.getElementById("libraryTab").onclick = showLibrary;
-document.getElementById("addTab").onclick = () =>
-    document.getElementById("addModal").classList.remove("hidden");
+document.getElementById("addTab").onclick = () => {
+    const modal = document.getElementById("addModal");
+    modal.classList.remove("hidden");
+    modal.style.display = "flex";
+};
 
 window.addEventListener("DOMContentLoaded", () => {
     toggleSeasonField();
