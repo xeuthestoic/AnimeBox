@@ -211,7 +211,7 @@ main {
     position: relative;
     background: #0b1117;
     border-radius: 20px;
-    padding: 20px 20px 25px 20px;
+    padding: 30px 20px 20px 20px;
     width: 92%;
     max-width: 420px;
     max-height: 90vh;
@@ -245,7 +245,7 @@ main {
 .close-btn {
     position: absolute;
     top: 12px;
-    right: 14px;
+    right: 20px;
     width: 32px;
     height: 32px;
     display: flex;
