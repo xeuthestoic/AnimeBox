@@ -12,6 +12,7 @@
 <body>
 
 <header class="topbar">
+    <img src="assets/logo.png" class="logo">
     <h1>AnimeBox</h1>
     <button class="icon-btn" onclick="openSettings()">⚙️</button>
 </header>
@@ -35,8 +36,9 @@
             <option value="manga">Manga</option>
         </select>
 
+        <!-- Saison visible uniquement pour Anime -->
         <div id="seasonContainer">
-            <input type="text" id="season" placeholder="Saison (ex: S1, S2, Film)">
+            <input type="text" id="season" placeholder="Saison (ex: S1, Film)">
         </div>
 
         <input type="text" id="name" placeholder="Titre">
