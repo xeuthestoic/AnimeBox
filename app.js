@@ -3,7 +3,7 @@
 ========================= */
 
 const DEFAULT_ANIMES = [
-    {
+   {
         type: "anime",
         season: "Final Season",
         name: "Attack on Titan",
@@ -12,8 +12,8 @@ const DEFAULT_ANIMES = [
         status: null,
         cover: "https://cdn.myanimelist.net/images/anime/10/47347.jpg",
         link: ""
-    },
-    {
+   },
+   {
         type: "anime",
         season: "S2",
         name: "Jujutsu Kaisen",
@@ -22,6 +22,36 @@ const DEFAULT_ANIMES = [
         status: null,
         cover: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg",
         link: ""
+   },
+   {
+        type: "manga",
+        season: null,
+        name: "Magic Emperor",
+        total: 803,
+        current: 0,
+        status: null,
+        cover: "https://static.scan-manga.com/img/manga/Magic_Emperor_1_2392.jpg",
+        link: "https://anime-sama.tv/catalogue/magic-emperor/"
+    },
+      {
+        type: "manga",
+        season: null,
+        name: "Overgeared",
+        total: 297,
+        current: 0,
+        status: null,
+        cover: "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/overgeared.jpg",
+        link: "https://anime-sama.tv/catalogue/overgeared/"
+    },
+    {
+        type: "manga",
+        season: null,
+        name: "The Beginning After The End",
+        total: 225,
+        current: 0,
+        status: null,
+        cover: "https://cdn.myanimelist.net/images/anime/1712/148299.jpg",
+        link: "https://anime-sama.tv/catalogue/the-beginning-after-the-end/"
     },
     {
         type: "anime",
