@@ -1,6 +1,14 @@
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
+    background: #020617; /* fond neutre */
+    color: white;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
     background: radial-gradient(
         circle at 20% 20%,
         #1e3a8a 0%,
@@ -8,8 +16,8 @@ body {
         #020617 70%,
         #000 100%
     );
-    background-attachment: fixed;
-    color: white;
+    z-index: -1;
+    pointer-events: none;
 }
 
 /* HEADER */
@@ -194,8 +202,8 @@ main {
 .modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(8px);
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(4px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -209,15 +217,19 @@ main {
 
 .modal-content {
     position: relative;
-    background: #0b1117;
-    border-radius: 20px;
+    background: linear-gradient(
+        180deg,
+        #0b1117 0%,
+        #070c11 100%
+    );
+    border-radius: 22px;
     padding: 30px 20px 20px 20px;
     width: 92%;
     max-width: 420px;
     max-height: 90vh;
     overflow-y: auto;
     overflow-x: hidden;
-    box-shadow: 0 0 40px rgba(59,130,246,0.25);
+    isolation: isolate;
 }
 
 
