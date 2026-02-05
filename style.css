@@ -96,14 +96,6 @@ main {
     height: 55px;
 }
 
-/* LOGO */
-.logo {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;      /* important */
-    border-radius: 50%;     /* circle */
-}
-
 /* SEARCH BAR */
 .search-bar {
     position: relative;
@@ -318,10 +310,12 @@ input, select {
     box-shadow: 0 0 25px rgba(96,165,250,0.7);
 }
 
+/* LOGO */
 .logo {
-    position: absolute;
-    left: 20px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .logo-link {
@@ -332,7 +326,7 @@ input, select {
 }
 
 .logo-link img {
-    height: 40px;
+    height: 60px;
     transition: 0.2s ease;
 }
 
