@@ -38,8 +38,7 @@ h1 {
 
     /* Effet néon bleu */
     filter: drop-shadow(0 0 5px #60a5fa)
-            drop-shadow(0 0 10px #3b82f6)
-            drop-shadow(0 0 20px #2563eb);
+            drop-shadow(0 0 10px #3b82f6);
 }
 
 .hero-text h2 {
