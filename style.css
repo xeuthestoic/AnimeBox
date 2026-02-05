@@ -318,8 +318,8 @@ input, select {
 
 /* LOGO */
 .logo {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
     border-radius: 50%;
 
@@ -341,7 +341,7 @@ input, select {
 }
 
 .logo-link img {
-    height: 60px;
+    height: 50px;
     transition: 0.2s ease;
 }
 
@@ -351,7 +351,7 @@ input, select {
     box-shadow:
         0 0 20px #60a5fa,
         0 0 40px #3b82f6,
-        0 0 60px #2563eb;
+        0 0 50px #2563eb;
 }
 
 .settings-version {
