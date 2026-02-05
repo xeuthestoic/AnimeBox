@@ -217,33 +217,23 @@ main {
 
 .modal-content {
     position: relative;
-    background: linear-gradient(
-        180deg,
-        #0b1117 0%,
-        #070c11 100%
-    );
-    border-radius: 22px;
-    padding: 30px 20px 20px 20px;
+    background: #0b1117;
+    border-radius: 20px;
+    padding: 40px 20px 20px 20px;
     width: 92%;
     max-width: 420px;
     max-height: 90vh;
     overflow-y: auto;
     overflow-x: hidden;
-    isolation: isolate;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
 }
 
 
 .modal-content input,
 .modal-content select,
-.modal-content textarea,
-.modal-content button {
+.modal-content textarea {
     width: 100%;
-    max-width: 100%;
     box-sizing: border-box;
-}
-
-.modal-content * {
-    max-width: 100%;
 }
 
 /* Animation */
@@ -255,8 +245,8 @@ main {
 /* CLOSE BUTTON */
 .close-btn {
     position: absolute;
-    top: 18px;
-    right: 18px;
+    top: 14px;
+    right: 14px;
 
     width: 34px;
     height: 34px;
@@ -265,18 +255,23 @@ main {
     align-items: center;
     justify-content: center;
 
-    background: rgba(59,130,246,0.12);
-    border-radius: 50%;
     border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.05);
+    color: #ef4444;
 
     font-size: 18px;
+    font-weight: bold;
+
     cursor: pointer;
-    color: #60a5fa;
-    transition: 0.2s ease;
+
+    transition: all 0.2s ease;
 }
 
+/* Hover */
 .close-btn:hover {
-    background: rgba(59,130,246,0.25);
+    background: rgba(239,68,68,0.15);
     transform: scale(1.1);
 }
 
