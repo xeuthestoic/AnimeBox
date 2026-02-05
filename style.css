@@ -390,17 +390,19 @@ input, select {
 
 /* BOUTON DANGER */
 .danger {
-    background: #7f1d1d;
-    border: 2px solid #7f1d1d;
-    padding: 12px;
+    background: transparent;
+    border: 2px solid #ef4444;
+    padding: 12px 20px;
     border-radius: 12px;
-    color: white;
-    margin-top: 15px;
+    color: #ef4444;
     cursor: pointer;
+    transition: 0.3s ease;
 }
 
 .danger:hover {
-    background: #991b1b;
+    background: #ef4444;
+    color: black;
+    box-shadow: 0 0 25px rgba(239,68,68,0.7);
 }
 
 /* Other */ 
