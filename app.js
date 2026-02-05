@@ -5,13 +5,13 @@
 const DEFAULT_ANIMES = [
     {
         type: "anime",
-        season: "S1",
+        season: "Final Season",
         name: "Attack on Titan",
         total: 87,
         current: 0,
         status: null,
         cover: "https://cdn.myanimelist.net/images/anime/10/47347.jpg",
-        link: "https://example.com/jjk"
+        link: ""
     },
     {
         type: "anime",
@@ -21,7 +21,67 @@ const DEFAULT_ANIMES = [
         current: 0,
         status: null,
         cover: "https://cdn.myanimelist.net/images/anime/1171/109222.jpg",
-        link: "https://example.com/jjk"
+        link: ""
+    },
+    {
+        type: "anime",
+        season: "S1",
+        name: "Solo Leveling",
+        total: 12,
+        current: 0,
+        status: null,
+        cover: "https://cdn.myanimelist.net/images/anime/1738/138937.jpg",
+        link: ""
+    },
+    {
+        type: "anime",
+        season: "S1",
+        name: "Chainsaw Man",
+        total: 12,
+        current: 0,
+        status: null,
+        cover: "https://cdn.myanimelist.net/images/anime/1806/126216.jpg",
+        link: ""
+    },
+    {
+        type: "anime",
+        season: "S1",
+        name: "Frieren",
+        total: 28,
+        current: 0,
+        status: null,
+        cover: "https://cdn.myanimelist.net/images/anime/1015/138006.jpg",
+        link: ""
+    },
+    {
+        type: "anime",
+        season: "S1",
+        name: "Demon Slayer",
+        total: 55,
+        current: 0,
+        status: null,
+        cover: "https://cdn.myanimelist.net/images/anime/1286/99889.jpg",
+        link: ""
+    },
+    {
+        type: "anime",
+        season: "S1",
+        name: "Blue Lock",
+        total: 24,
+        current: 0,
+        status: null,
+        cover: "https://cdn.myanimelist.net/images/anime/1258/126929.jpg",
+        link: ""
+    },
+    {
+        type: "anime",
+        season: "S1",
+        name: "My Hero Academia",
+        total: 138,
+        current: 0,
+        status: null,
+        cover: "https://cdn.myanimelist.net/images/anime/10/78745.jpg",
+        link: ""
     },
     {
         type: "manga",
@@ -31,7 +91,57 @@ const DEFAULT_ANIMES = [
         current: 0,
         status: null,
         cover: "https://cdn.myanimelist.net/images/manga/1/157897.jpg",
-        link: "https://example.com/jjk"
+        link: ""
+    },
+    {
+        type: "manga",
+        season: null,
+        name: "One Piece",
+        total: 1100,
+        current: 0,
+        status: null,
+        cover: "https://cdn.myanimelist.net/images/manga/3/243675.jpg",
+        link: ""
+    },
+    {
+        type: "manga",
+        season: null,
+        name: "Vagabond",
+        total: 327,
+        current: 0,
+        status: null,
+        cover: "https://cdn.myanimelist.net/images/manga/1/157897.jpg",
+        link: ""
+    },
+    {
+        type: "manhwa",
+        season: null,
+        name: "Solo Leveling",
+        total: 200,
+        current: 0,
+        status: null,
+        cover: "https://cdn.myanimelist.net/images/manga/3/222295.jpg",
+        link: ""
+    },
+    {
+        type: "manhwa",
+        season: null,
+        name: "Omniscient Reader",
+        total: 200,
+        current: 0,
+        status: null,
+        cover: "https://cdn.myanimelist.net/images/manga/3/249044.jpg",
+        link: ""
+    },
+    {
+        type: "manhwa",
+        season: null,
+        name: "The Beginning After The End",
+        total: 225,
+        current: 0,
+        status: null,
+        cover: "https://cdn.myanimelist.net/images/manga/3/222971.jpg",
+        link: ""
     }
 ];
 
