@@ -26,16 +26,6 @@ const DEFAULT_ANIMES = [
     {
         type: "anime",
         season: "S1",
-        name: "Solo Leveling",
-        total: 12,
-        current: 0,
-        status: null,
-        cover: "https://cdn.myanimelist.net/images/anime/1738/138937.jpg",
-        link: ""
-    },
-    {
-        type: "anime",
-        season: "S1",
         name: "Chainsaw Man",
         total: 12,
         current: 0,
@@ -94,26 +84,6 @@ const DEFAULT_ANIMES = [
         link: ""
     },
     {
-        type: "manga",
-        season: null,
-        name: "One Piece",
-        total: 1100,
-        current: 0,
-        status: null,
-        cover: "https://cdn.myanimelist.net/images/manga/3/243675.jpg",
-        link: ""
-    },
-    {
-        type: "manga",
-        season: null,
-        name: "Vagabond",
-        total: 327,
-        current: 0,
-        status: null,
-        cover: "https://cdn.myanimelist.net/images/manga/1/157897.jpg",
-        link: ""
-    },
-    {
         type: "manhwa",
         season: null,
         name: "Solo Leveling",
@@ -121,26 +91,6 @@ const DEFAULT_ANIMES = [
         current: 0,
         status: null,
         cover: "https://cdn.myanimelist.net/images/manga/3/222295.jpg",
-        link: ""
-    },
-    {
-        type: "manhwa",
-        season: null,
-        name: "Omniscient Reader",
-        total: 200,
-        current: 0,
-        status: null,
-        cover: "https://cdn.myanimelist.net/images/manga/3/249044.jpg",
-        link: ""
-    },
-    {
-        type: "manhwa",
-        season: null,
-        name: "The Beginning After The End",
-        total: 225,
-        current: 0,
-        status: null,
-        cover: "https://cdn.myanimelist.net/images/manga/3/222971.jpg",
         link: ""
     }
 ];
