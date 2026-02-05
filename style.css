@@ -415,3 +415,9 @@ html, body {
     opacity: 0.5;
     pointer-events: none;
 }
+
+@media (max-width: 600px) {
+    .app-version {
+        display: none;
+    }
+}
