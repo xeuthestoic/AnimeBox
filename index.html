@@ -52,7 +52,13 @@
         <input type="url" id="link" placeholder="Lien pour lire/regarder (optionnel)">
 
         <input type="number" id="total" placeholder="Total épisodes/chapitres">
-        <input type="number" id="current" placeholder="Progression">
+        <div class="number-control">
+            <button type="button" onclick="changeCurrent(-1)">➖</button>
+    
+            <input type="number" id="current" placeholder="Progression">
+    
+            <button type="button" onclick="changeCurrent(1)">➕</button>
+        </div>
         <input type="file" id="cover" accept="image/*">
 
         <select id="status">
