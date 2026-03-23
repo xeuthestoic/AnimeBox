@@ -125,7 +125,7 @@ const DEFAULT_ANIMES = [
     }
 ];
 
-const APP_VERSION = "BETA Release";
+const APP_VERSION = "QOL #1";
 
 let currentFilter = "Tous";
 let searchQuery = "";
