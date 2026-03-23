@@ -438,3 +438,31 @@ html, body {
         display: none;
     }
 }
+
+/* +/- BUTTONS */
+.number-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.number-control button {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background: #1f2937;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.number-control button:hover {
+    background: #3b82f6;
+    box-shadow: 0 0 10px rgba(59,130,246,0.6);
+}
+
+.number-control input {
+    text-align: center;
+}
