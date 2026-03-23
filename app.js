@@ -310,6 +310,25 @@ function toggleSeasonField(){
     seasonContainer.style.display = type === "anime" ? "block" : "none";
 }
 
+/* =========================
+   +/- CURRENT
+========================= */
+
+function changeCurrent(value){
+    const input = document.getElementById("current");
+
+    let current = parseInt(input.value) || 0;
+    const total = parseInt(document.getElementById("total").value) || Infinity;
+
+    current += value;
+
+    // limites
+    if(current < 0) current = 0;
+    if(current > total) current = total;
+
+    input.value = current;
+}
+
 function saveAnime(){
     const data = getData();
     const type = document.getElementById("type").value;
