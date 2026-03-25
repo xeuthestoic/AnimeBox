@@ -466,3 +466,35 @@ html, body {
 .number-control input {
     text-align: center;
 }
+
+.card-actions {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+}
+
+.card {
+    position: relative; /* IMPORTANT */
+}
+
+.card-actions button {
+    background: rgba(0,0,0,0.6);
+    border: none;
+    border-radius: 8px;
+    padding: 5px 7px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.card-actions button:hover {
+    background: #3b82f6;
+}
+
+.card-actions button:last-child:hover {
+    background: #ef4444;
+}
