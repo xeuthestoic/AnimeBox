@@ -306,6 +306,16 @@ function openEdit(index){
     document.getElementById("addModal").classList.remove("hidden");
 }
 
+function deleteAnime(index){
+    const data = getData();
+
+    if(confirm("Supprimer cet anime ?")){
+        data.splice(index, 1); // 🔥 suppression propre
+        saveData(data);
+        showLibrary();
+        showToast("🗑️ | Supprimé de la bibliothèque");
+    }
+}
 /* =========================
    ADD / UPDATE
 ========================= */
