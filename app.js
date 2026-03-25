@@ -231,26 +231,32 @@ function showLibrary(){
 
         <div class="grid">
             ${data.map((a,i)=>`
-                <div class="card" onclick="openEdit(${i})">
-                    <img src="${a.cover}">
-                    <div style="padding:8px;font-size:13px;">
-                        <strong>${a.name}</strong>
-                        ${a.type === "anime" && a.season ? ` • ${a.season}` : ""}
+                <div class="card">
+                   <div class="card-actions">
+                     <button onclick="openEdit(${i})">✏️</button>
+                     <button onclick="deleteAnime(${i})">🗑️</button>
+                  </div>
+
+                  <img src="${a.cover}" onclick="openEdit(${i})">
+
+                  <div style="padding:8px;font-size:13px;" onclick="openEdit(${i})">
+                    <strong>${a.name}</strong>
+                    ${a.type === "anime" && a.season ? ` • ${a.season}` : ""}
+                    <br>
+                    ${a.type === "anime"
+                        ? `🎬 | Épisode ${a.current} / ${a.total}`
+                        : `📖 | Chapitre ${a.current} / ${a.total}`}
+                    ${a.link ? `
                         <br>
-                        ${a.type === "anime"
-                            ? `🎬 | Épisode ${a.current} / ${a.total}`
-                            : `📖 | Chapitre ${a.current} / ${a.total}`}
-                        ${a.link ? `
-                            <br>
-                            <a href="${a.link}" 
-                               target="_blank" 
-                               onclick="event.stopPropagation()"
-                               style="color:#60a5fa;text-decoration:none;">
-                               🔗 Ouvrir
-                            </a>
-                        ` : ""}
-                    </div>
+                        <a href="${a.link}" 
+                           target="_blank" 
+                           onclick="event.stopPropagation()"
+                           style="color:#60a5fa;text-decoration:none;">
+                           🔗 Ouvrir
+                        </a>
+                    ` : ""}
                 </div>
+            </div>
             `).join("")}
         </div>
     `;
