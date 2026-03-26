@@ -385,7 +385,7 @@ function saveAnime(){
         current: document.getElementById("current").value,
         status: document.getElementById("status").value,
         link: document.getElementById("link").value || null,
-        cover: editIndex !== null ? data[editIndex].cover : ""
+        cover: editIndex !== null ? data[editIndex].cover : "",
         id: editIndex !== null ? data[editIndex].id : Date.now() + Math.random(),
     };
 
@@ -404,6 +404,7 @@ function saveAnime(){
             saveData(data);
             closeModal();
             showLibrary();
+            document.getElementById("cover").value = "";
         };
         reader.readAsDataURL(file);
         return;
@@ -457,6 +458,7 @@ function closeModal(){
     document.getElementById("current").value = "";
     document.getElementById("season").value = "";
     document.getElementById("link").value = "";
+    document.getElementById("cover").value = "";
 }
 
 function exportJSON(){
