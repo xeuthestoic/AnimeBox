@@ -139,7 +139,23 @@ const content = document.getElementById("content");
 ========================= */
 
 function getData(){
-    return JSON.parse(localStorage.getItem("animebox")) || [];
+    let data = JSON.parse(localStorage.getItem("animebox")) || [];
+
+    let updated = false;
+
+    data = data.map(a => {
+        if(!a.id){
+            updated = true;
+            return { ...a, id: Date.now() + Math.random() };
+        }
+        return a;
+    });
+
+    if(updated){
+        saveData(data);
+    }
+
+    return data;
 }
 
 function saveData(data){
@@ -183,7 +199,10 @@ function addDefaultAnime(index){
     );
 
     if(!exists){
-        data.push({...anime});
+        data.push({
+             ...anime,
+             id: Date.now() + Math.random()
+         });
         saveData(data);
         showToast("✅ | Ajouté à ta bibliothèque");
     } else {
@@ -231,10 +250,7 @@ function showLibrary(){
 
         <div class="grid">
     ${data.map((a) => {
-        const realIndex = getData().findIndex(x =>
-            x.name === a.name &&
-            x.season === a.season
-        );
+        const realIndex = getData().findIndex(x => x.id === a.id);
 
         return `
         <div class="card">
@@ -370,6 +386,7 @@ function saveAnime(){
         status: document.getElementById("status").value,
         link: document.getElementById("link").value || null,
         cover: editIndex !== null ? data[editIndex].cover : ""
+        id: editIndex !== null ? data[editIndex].id : Date.now() + Math.random(),
     };
 
     if(file){
