@@ -230,16 +230,22 @@ function showLibrary(){
         </div>
 
         <div class="grid">
-            ${data.map((a,i)=>`
+            ${data.map((a)=>{
+                const realIndex = getData().findIndex(x =>
+                    x.name === a.name &&
+                    x.season === a.season
+                );
+
+                return `
                 <div class="card">
                    <div class="card-actions">
-                     <button onclick="openEdit(${i})">✏️</button>
-                     <button onclick="deleteAnime(${i})">🗑️</button>
+                     <button onclick="openEdit(${realIndex})">✏️</button>
+                     <button onclick="deleteAnime(${realIndex})">🗑️</button>
                   </div>
 
-                  <img src="${a.cover}" onclick="openEdit(${i})">
+                  <img src="${a.cover}" onclick="openEdit(${realIndex})">
 
-                  <div style="padding:8px;font-size:13px;" onclick="openEdit(${i})">
+                  <div style="padding:8px;font-size:13px;" onclick="openEdit(${realIndex})">
                     <strong>${a.name}</strong>
                     ${a.type === "anime" && a.season ? ` • ${a.season}` : ""}
                     <br>
@@ -349,6 +355,8 @@ function saveAnime(){
     const data = getData();
     const type = document.getElementById("type").value;
 
+    const file = document.getElementById("cover").files[0];
+
     const newData = {
         type: type,
         season: type === "anime"
@@ -362,31 +370,40 @@ function saveAnime(){
         cover: editIndex !== null ? data[editIndex].cover : ""
     };
 
+    if(file){
+        const reader = new FileReader();
+        reader.onload = function(){
+            newData.cover = reader.result;
+
+            if(editIndex !== null){
+                data[editIndex] = newData;
+                editIndex = null;
+            } else {
+                data.push(newData);
+            }
+
+            saveData(data);
+            closeModal();
+            showLibrary();
+        };
+        reader.readAsDataURL(file);
+        return;
+    }
     if(editIndex !== null){
         data[editIndex] = newData;
         editIndex = null;
     } else {
-        const file = document.getElementById("cover").files[0];
-        if(file){
-            const reader = new FileReader();
-            reader.onload = function(){
-                newData.cover = reader.result;
-                data.push(newData);
-                saveData(data);
-                showLibrary();
-            };
-            reader.readAsDataURL(file);
-            closeModal();
-            return;
-        }
         data.push(newData);
     }
 
     saveData(data);
     closeModal();
     showLibrary();
+}
 
-    document.querySelector(".primary").textContent = "Ajouter";
+function searchAnime(value){
+    searchQuery = value;
+    showLibrary();
 }
 
 /* =========================
