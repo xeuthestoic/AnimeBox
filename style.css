@@ -498,3 +498,12 @@ html, body {
 .card-actions button:last-child:hover {
     background: #ef4444;
 }
+
+@media (max-width: 600px) {
+    .toast {
+        width: 80%;
+        font-size: 13px;
+        padding: 8px 12px;
+        bottom: 80px;
+    }
+}
