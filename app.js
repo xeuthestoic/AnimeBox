@@ -274,6 +274,7 @@ setTimeout(() => {
         input.setSelectionRange(searchQuery.length, searchQuery.length);
     }
 }, 0);
+}
 
 function clearSearch(){
     searchQuery = "";
