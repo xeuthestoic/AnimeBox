@@ -230,41 +230,42 @@ function showLibrary(){
         </div>
 
         <div class="grid">
-            ${data.map((a)=>{
-                const realIndex = getData().findIndex(x =>
-                    x.name === a.name &&
-                    x.season === a.season
-                );
+    ${data.map((a) => {
+        const realIndex = getData().findIndex(x =>
+            x.name === a.name &&
+            x.season === a.season
+        );
 
-                return `
-                <div class="card">
-                   <div class="card-actions">
-                     <button onclick="openEdit(${realIndex})">✏️</button>
-                     <button onclick="deleteAnime(${realIndex})">🗑️</button>
-                  </div>
-
-                  <img src="${a.cover}" onclick="openEdit(${realIndex})">
-
-                  <div style="padding:8px;font-size:13px;" onclick="openEdit(${realIndex})">
-                    <strong>${a.name}</strong>
-                    ${a.type === "anime" && a.season ? ` • ${a.season}` : ""}
-                    <br>
-                    ${a.type === "anime"
-                        ? `🎬 | Épisode ${a.current} / ${a.total}`
-                        : `📖 | Chapitre ${a.current} / ${a.total}`}
-                    ${a.link ? `
-                        <br>
-                        <a href="${a.link}" 
-                           target="_blank" 
-                           onclick="event.stopPropagation()"
-                           style="color:#60a5fa;text-decoration:none;">
-                           🔗 Ouvrir
-                        </a>
-                    ` : ""}
-                </div>
+        return `
+        <div class="card">
+            <div class="card-actions">
+                <button onclick="openEdit(${realIndex})">✏️</button>
+                <button onclick="deleteAnime(${realIndex})">🗑️</button>
             </div>
-            `).join("")}
+
+            <img src="${a.cover}" onclick="openEdit(${realIndex})">
+
+            <div style="padding:8px;font-size:13px;" onclick="openEdit(${realIndex})">
+                <strong>${a.name}</strong>
+                ${a.type === "anime" && a.season ? ` • ${a.season}` : ""}
+                <br>
+                ${a.type === "anime"
+                    ? `🎬 | Épisode ${a.current} / ${a.total}`
+                    : `📖 | Chapitre ${a.current} / ${a.total}`}
+                ${a.link ? `
+                    <br>
+                    <a href="${a.link}" 
+                       target="_blank" 
+                       onclick="event.stopPropagation()"
+                       style="color:#60a5fa;text-decoration:none;">
+                       🔗 Ouvrir
+                    </a>
+                ` : ""}
+            </div>
         </div>
+        `;
+    }).join("")}
+</div>
     `;
 }
 
