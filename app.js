@@ -486,18 +486,26 @@ function showToast(message){
 
     toastMessage.textContent = message;
 
+    // afficher
     toast.classList.remove("hidden");
-    toast.style.opacity = "1";
+
+    // reset animation
+    toast.classList.remove("show");
+    void toast.offsetWidth;
+
+    // animation ON
+    toast.classList.add("show");
 
     if(toastTimeout){
         clearTimeout(toastTimeout);
     }
 
     toastTimeout = setTimeout(() => {
-        toast.style.opacity = "0";
+        toast.classList.remove("show");
+
         setTimeout(() => {
             toast.classList.add("hidden");
-        }, 200);
+        }, 250);
     }, 2000);
 }
 
