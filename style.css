@@ -371,34 +371,66 @@ input, select {
 /* TOAST */
 .toast {
     position: fixed;
-    bottom: 100px;
+    bottom: 130px;
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(180deg,#1f2937,#000);
-    padding: 12px 20px;
-    border-radius: 12px;
-    display: flex; /* IMPORTANT */
+
+    min-width: 220px;
+    max-width: 380px;
+
+    padding: 10px 16px;
+    border-radius: 10px;
+
+    display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
+    gap: 12px;
+
+    background: rgba(20,20,20,0.85);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    color: #e5e5e5;
+    font-size: 13px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.7),
+        0 0 10px rgba(255,255,255,0.05);
+
     z-index: 3000;
-    transition: opacity 0.2s ease;
+
+    opacity: 0;
+    transition: all 0.25s ease;
 }
 
-.hidden {
-    display: none !important;
+/* animation smooth */
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, -6px);
 }
 
-
-@keyframes slideUpToast {
-    from { transform: translate(-50%, 20px); opacity: 0; }
-    to { transform: translate(-50%, 0); opacity: 1; }
-}
-
+/* bouton */
 .toast button {
     background: none;
     border: none;
-    color: white;
+    color: #aaa;
     cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.toast button:hover {
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .toast {
+        width: 85%;
+        font-size: 12px;
+        padding: 8px 12px;
+        bottom: 95px;
+    }
 }
 
 /* BOUTON DANGER */
@@ -497,13 +529,4 @@ html, body {
 
 .card-actions button:last-child:hover {
     background: #ef4444;
-}
-
-@media (max-width: 600px) {
-    .toast {
-        width: 80%;
-        font-size: 13px;
-        padding: 8px 12px;
-        bottom: 80px;
-    }
 }
