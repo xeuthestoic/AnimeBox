@@ -267,13 +267,13 @@ function showLibrary(){
     }).join("")}
 </div>
     `;
-}
-
-const input = document.getElementById("searchInput");
-if(input){
-    input.focus();
-    input.setSelectionRange(searchQuery.length, searchQuery.length);
-}
+setTimeout(() => {
+    const input = document.getElementById("searchInput");
+    if(input){
+        input.focus();
+        input.setSelectionRange(searchQuery.length, searchQuery.length);
+    }
+}, 0);
 
 function clearSearch(){
     searchQuery = "";
