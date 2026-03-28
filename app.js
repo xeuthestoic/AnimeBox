@@ -162,6 +162,27 @@ function saveData(data){
     localStorage.setItem("animebox", JSON.stringify(data));
 }
 
+async function fetchAnimeData(title){
+    try{
+        const res = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(title)}&limit=1`);
+        const data = await res.json();
+
+        if(data.data.length === 0) return null;
+
+        const anime = data.data[0];
+
+        return {
+            cover: anime.images.jpg.image_url,
+            total: anime.episodes || 0,
+            link: anime.url
+        };
+
+    }catch(err){
+        console.error(err);
+        return null;
+    }
+}
+
 /* =========================
    HOME
 ========================= */
@@ -369,7 +390,7 @@ function changeCurrent(value){
     input.value = current;
 }
 
-function saveAnime(){
+async function saveAnime(){
     const data = getData();
     const type = document.getElementById("type").value;
 
@@ -393,6 +414,16 @@ function saveAnime(){
         const reader = new FileReader();
         reader.onload = function(){
             newData.cover = reader.result;
+
+    if(!file){
+         const apiData = await fetchAnimeData(newData.name);
+
+         if(apiData){
+              newData.cover = newData.cover || apiData.cover;
+              newData.total = newData.total || apiData.total;
+              newData.link = newData.link || apiData.link;
+         }
+    }
 
             if(editIndex !== null){
                 data[editIndex] = newData;
@@ -424,6 +455,19 @@ function saveAnime(){
 function searchAnime(value){
     searchQuery = value;
     showLibrary();
+}
+
+async function autoFill(){
+    const name = document.getElementById("name").value;
+
+    if(name.length < 3) return;
+
+    const data = await fetchAnimeData(name);
+
+    if(data){
+        document.getElementById("total").value = data.total;
+        document.getElementById("link").value = data.link;
+    }
 }
 
 /* =========================
