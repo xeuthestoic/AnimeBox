@@ -393,7 +393,6 @@ function changeCurrent(value){
 async function saveAnime(){
     const data = getData();
     const type = document.getElementById("type").value;
-
     const file = document.getElementById("cover").files[0];
 
     const newData = {
@@ -410,11 +409,12 @@ async function saveAnime(){
         id: editIndex !== null ? data[editIndex].id : Date.now() + Math.random(),
     };
 
+    // 📂 CAS 1 : IMAGE UPLOAD
     if(file){
         const reader = new FileReader();
         reader.onload = function(){
             newData.cover = reader.result;
-           
+
             if(editIndex !== null){
                 data[editIndex] = newData;
                 editIndex = null;
@@ -430,45 +430,26 @@ async function saveAnime(){
         reader.readAsDataURL(file);
         return;
     }
-    if(file){
-    const reader = new FileReader();
-    reader.onload = function(){
-        newData.cover = reader.result;
 
-        if(editIndex !== null){
-            data[editIndex] = newData;
-            editIndex = null;
-        } else {
-            data.push(newData);
-        }
+    // 🤖 CAS 2 : AUTO API (SANS IMAGE)
+    const apiData = await fetchAnimeData(newData.name);
 
-        saveData(data);
-        closeModal();
-        showLibrary();
-        document.getElementById("cover").value = "";
-    };
-    reader.readAsDataURL(file);
-    return;
-}
+    if(apiData){
+        newData.cover = apiData.cover;
+        newData.total = newData.total || apiData.total;
+        newData.link = newData.link || apiData.link;
+    }
 
-const apiData = await fetchAnimeData(newData.name);
+    if(editIndex !== null){
+        data[editIndex] = newData;
+        editIndex = null;
+    } else {
+        data.push(newData);
+    }
 
-if(apiData){
-    newData.cover = newData.cover || apiData.cover;
-    newData.total = newData.total || apiData.total;
-    newData.link = newData.link || apiData.link;
-}
-
-if(editIndex !== null){
-    data[editIndex] = newData;
-    editIndex = null;
-} else {
-    data.push(newData);
-}
-
-saveData(data);
-closeModal();
-showLibrary();
+    saveData(data);
+    closeModal();
+    showLibrary();
 }
 
 function searchAnime(value){
