@@ -339,6 +339,7 @@ function openEdit(index){
     document.getElementById("current").value = anime.current;
     document.getElementById("status").value = anime.status;
     document.getElementById("link").value = anime.link || "";
+    document.getElementById("modalTitle").textContent = "Modifier";
 
     if(anime.type === "anime"){
         document.getElementById("season").value = anime.season || "";
@@ -349,6 +350,14 @@ function openEdit(index){
     document.querySelector(".primary").textContent = "Mettre à jour";
 
     document.getElementById("addModal").classList.remove("hidden");
+}
+
+function updateModalUI(){
+    document.getElementById("modalTitle").textContent =
+        editIndex !== null ? "Modifier" : "Ajouter";
+
+    document.querySelector(".primary").textContent =
+        editIndex !== null ? "Modifier" : "Ajouter";
 }
 
 function deleteAnime(index){
@@ -503,6 +512,7 @@ function closeModal(){
     document.getElementById("season").value = "";
     document.getElementById("link").value = "";
     document.getElementById("cover").value = "";
+    document.getElementById("modalTitle").textContent = "Ajouter";
 }
 
 function exportJSON(){
