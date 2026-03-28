@@ -414,17 +414,7 @@ async function saveAnime(){
         const reader = new FileReader();
         reader.onload = function(){
             newData.cover = reader.result;
-
-    if(!file){
-         const apiData = await fetchAnimeData(newData.name);
-
-         if(apiData){
-              newData.cover = newData.cover || apiData.cover;
-              newData.total = newData.total || apiData.total;
-              newData.link = newData.link || apiData.link;
-         }
-    }
-
+           
             if(editIndex !== null){
                 data[editIndex] = newData;
                 editIndex = null;
@@ -440,16 +430,45 @@ async function saveAnime(){
         reader.readAsDataURL(file);
         return;
     }
-    if(editIndex !== null){
-        data[editIndex] = newData;
-        editIndex = null;
-    } else {
-        data.push(newData);
-    }
+    if(file){
+    const reader = new FileReader();
+    reader.onload = function(){
+        newData.cover = reader.result;
 
-    saveData(data);
-    closeModal();
-    showLibrary();
+        if(editIndex !== null){
+            data[editIndex] = newData;
+            editIndex = null;
+        } else {
+            data.push(newData);
+        }
+
+        saveData(data);
+        closeModal();
+        showLibrary();
+        document.getElementById("cover").value = "";
+    };
+    reader.readAsDataURL(file);
+    return;
+}
+
+const apiData = await fetchAnimeData(newData.name);
+
+if(apiData){
+    newData.cover = newData.cover || apiData.cover;
+    newData.total = newData.total || apiData.total;
+    newData.link = newData.link || apiData.link;
+}
+
+if(editIndex !== null){
+    data[editIndex] = newData;
+    editIndex = null;
+} else {
+    data.push(newData);
+}
+
+saveData(data);
+closeModal();
+showLibrary();
 }
 
 function searchAnime(value){
