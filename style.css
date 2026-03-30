@@ -530,3 +530,53 @@ html, body {
 .card-actions button:last-child:hover {
     background: #ef4444;
 }
+
+/* INTRO NETFLIX STYLE */
+.intro {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+.intro-logo {
+    font-size: 48px;
+    font-weight: bold;
+    color: #3b82f6;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: introAnim 2s ease forwards;
+}
+
+@keyframes introAnim {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+        filter: blur(10px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+        filter: blur(0px);
+        text-shadow: 0 0 20px #3b82f6;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* FADE OUT */
+.intro.hide {
+    animation: fadeOut 0.8s ease forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
