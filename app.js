@@ -607,9 +607,14 @@ window.addEventListener("DOMContentLoaded", () => {
     toggleSeasonField();
     showHome();
 
-    const intro = document.getElementById("intro");
+const intro = document.getElementById("intro");
+
+setTimeout(() => {
+    intro.classList.add("hide");
 
     setTimeout(() => {
-        intro.classList.add("hide");
-    }, 2000);
+        intro.remove();
+    }, 800);
+
+}, 2000);
 });
