@@ -606,4 +606,10 @@ document.getElementById("addTab").onclick = () => {
 window.addEventListener("DOMContentLoaded", () => {
     toggleSeasonField();
     showHome();
+
+    const intro = document.getElementById("intro");
+
+    setTimeout(() => {
+        intro.classList.add("hide");
+    }, 2000);
 });
